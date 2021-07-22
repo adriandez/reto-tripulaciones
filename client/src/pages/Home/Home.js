@@ -43,6 +43,9 @@ const Home = () => {
       return popup
   } */
 
+
+
+
   const openPopup = (index) => {
     document.getElementById("resultado").innerHTML = `
 
@@ -56,6 +59,12 @@ const Home = () => {
 
 `;
   };
+
+  const paintPopup = () =>{
+    
+
+
+  }
 
   return (
     <div>
@@ -78,7 +87,7 @@ const Home = () => {
               offsetLeft={-20}
               offsetTop={-30}
             >
-              <div className="marker" onClick={() => openPopup(item.id)}>
+              <div className="marker" tabIndex="0" onFocus={() => openPopup(item.id)}>
                 {/*     <span><b>{i + 1}</b></span> */}
               </div>
             </Marker>
@@ -89,6 +98,8 @@ const Home = () => {
       </section>
 
       <div id="resultado" className="popUp">
+
+        {openPopup}
  
       </div>
     </div>
