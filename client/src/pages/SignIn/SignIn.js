@@ -114,7 +114,7 @@ const SignIn = () => {
   const googleLogin = () => {
     return (
       <GoogleLogin
-        clientId="542913183117-959bmc4aiescf3jep1gtt3s7ahjis46v.apps.googleusercontent.com"
+        clientId={process.env.REACT_APP_GG_API}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
@@ -125,7 +125,7 @@ const SignIn = () => {
   const facebookLogin = () => {
     return (
       <FacebookLogin
-        appId="560421605128839"
+        appId={process.env.REACT_APP_FB_API}
         autoLoad={false}
         fields="name,email,picture"
         onClick={componentClicked}
