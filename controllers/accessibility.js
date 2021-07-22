@@ -1,5 +1,6 @@
 const { user } = require("../utils/database");
 const bcrypt = require("bcrypt");
+const aseos = require("../aseos.json")
 
 const routes = {
   hello: (req, res) => {
@@ -39,6 +40,7 @@ const routes = {
   findWc: async (req, res) => {
     try {
 
+      console.log(aseos)
       console.log(req.body)
 
       let WCS = [
