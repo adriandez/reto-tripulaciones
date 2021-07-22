@@ -70,7 +70,7 @@ const SignIn = () => {
     let cookieToken = await axios.post("/auth/googleLogin", googleLogin);
 
       
-    console.log(cookieToken.data.token)
+ 
     const cookies = new Cookies();
     let metercookie = await cookies.set("myCookie", cookieToken.data.token);
     console.log(metercookie)
