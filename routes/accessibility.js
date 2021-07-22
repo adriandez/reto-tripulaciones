@@ -12,5 +12,9 @@ router.post("/auth/createUser", routes.createUser);
 router.post("/auth/checkToken", routes.checkToken);
 router.post("/user", routes.findUser);
 
+//GOOGLE//
+
+router.post("/auth/googleLogin", routes.googleLogin);
+
 
 module.exports = router;

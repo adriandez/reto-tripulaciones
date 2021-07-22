@@ -1,5 +1,7 @@
 import "./SignIn.scss";
 import Cookies from "universal-cookie";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -20,8 +22,6 @@ const SignIn = () => {
       console.log("no hay token");
     }
   }, []);
-
- 
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -47,7 +47,58 @@ const SignIn = () => {
     } catch (e) {}
   };
 
- 
+  const responseGoogle = async (respuesta) => {
+
+
+    
+
+/*     cookies.set("myCookie", response.token); */
+
+    let googleLogin = {
+      name: respuesta.profileObj.name,
+      email: respuesta.profileObj.email,
+      password: respuesta.profileObj.googleId
+
+
+    }
+
+
+    let cookieToken = await axios.post("/auth/googleLogin", googleLogin);
+  
+
+    console.log(cookieToken.data.token)
+
+    cookies.set("myCookie", cookieToken.data.token);
+    alert("Se ha logueado correctamente");
+
+    window.location = "/demo";
+
+   
+  };
+  const responseFacebook = (respuesta) => {
+    console.log(respuesta);
+  };
+  const componentClicked = () => {};
+  const googleLogin = () => {
+    return <GoogleLogin
+      clientId="542913183117-959bmc4aiescf3jep1gtt3s7ahjis46v.apps.googleusercontent.com"
+      buttonText="Login"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      cookiePolicy={"single_host_origin"}
+    />;
+  };
+  const facebookLogin = () => {
+    return  <FacebookLogin
+    appId="560421605128839"
+    autoLoad={false}
+    fields="name,email,picture"
+    onClick={componentClicked}
+    callback={responseFacebook}
+    textButton="Login con FB"
+    icon="fa-facebook"
+  />;
+  };
 
   return (
     <form className="SignIn" onSubmit={handleLogin}>
@@ -61,7 +112,8 @@ const SignIn = () => {
         />
       </label>
       <label htmlFor="password">
-        Password:
+        {" "}
+        Password:{" "}
         <input
           type="password"
           name="Password"
@@ -70,6 +122,10 @@ const SignIn = () => {
         />
       </label>
       <button type="submit">Sign In</button>
+      <br></br>
+      {googleLogin()}
+      <br></br>
+      {facebookLogin()}
     </form>
   );
 };
