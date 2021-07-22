@@ -108,17 +108,11 @@ const routes = {
   },
 
   googleLogin: async (req, res) => {
-    const { email ,name, password} = req.body;
+    const { email, name, password } = req.body;
 
-    
+    const project = await user.findOne({ where: { email: email } });
 
-    const project = await user.findOne({ where: { email: email  } });
-
-  
-
-    if(project===null){
-
-
+    if (project === null) {
       const hashedPassword = await bcrypt.hash(password, 11);
       const entry = { name: name, email: email, password: hashedPassword };
       console.log(entry);
@@ -131,19 +125,31 @@ const routes = {
           .catch((error) => {
             console.log(error);
           });
-        res.status(200).json({ message: `CREATED User: ${entry.name}` });
+
+          const project = await user.findOne({ where: { email: email } });
+
+          let user_ID = project.dataValues.user_ID;
+          let nameUser = project.dataValues.name;
+    
+          const payload = {
+            user_ID: user_ID,
+            name: nameUser,
+          };
+    
+          jwt.sign(   payload,  mySecret,
+            (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
+            }
+          );
+
+
+
+/*         res.status(200).json({ message: `CREATED User: ${entry.name}` }); */
       } catch (err) {
         console.log(err);
       }
-
-
-    }
-    else if (project !==null){
-
-
+    } else if (project !== null) {
       const project = await user.findOne({ where: { email: email } });
 
-      
       let user_ID = project.dataValues.user_ID;
       let nameUser = project.dataValues.name;
 
@@ -152,30 +158,69 @@ const routes = {
         name: nameUser,
       };
 
-      jwt.sign(
-        payload,
-        mySecret,
-
-        (err, token) => {
-          res.cookie(token);
-
-          res.json({
-            mensaje: "El usuario no existe",
-            status: "true",
-            token: token,
-          });
+      jwt.sign(   payload,  mySecret,
+        (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
         }
       );
       console.log("el usuario EXISTE");
-      
- 
-
-
-
     }
+  },
+  facebookLogin: async (req, res) => {
+    const { email, name, password } = req.body;
 
-  
-     
+    const project = await user.findOne({ where: { email: email } });
+
+    if (project === null) {
+      const hashedPassword = await bcrypt.hash(password, 11);
+      const entry = { name: name, email: email, password: hashedPassword };
+      console.log(entry);
+      try {
+        await user
+          .create(entry)
+          .then((newUser) => {
+            console.log(newUser);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+          const project = await user.findOne({ where: { email: email } });
+
+          let user_ID = project.dataValues.user_ID;
+          let nameUser = project.dataValues.name;
+    
+          const payload = {
+            user_ID: user_ID,
+            name: nameUser,
+          };
+    
+          jwt.sign(   payload,  mySecret,
+            (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
+            }
+          );
+
+
+
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (project !== null) {
+      const project = await user.findOne({ where: { email: email } });
+
+      let user_ID = project.dataValues.user_ID;
+      let nameUser = project.dataValues.name;
+
+      const payload = {
+        user_ID: user_ID,
+        name: nameUser,
+      };
+
+      jwt.sign(   payload,  mySecret,
+        (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
+        }
+      );
+      console.log("el usuario EXISTE");
+    }
   },
 
   posts: (req, res) => {

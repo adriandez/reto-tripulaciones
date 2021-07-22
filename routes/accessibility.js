@@ -16,5 +16,8 @@ router.post("/user", routes.findUser);
 
 router.post("/auth/googleLogin", routes.googleLogin);
 
+//FACEBOOK//
+router.post("/auth/facebookLogin", routes.facebookLogin);
+
 
 module.exports = router;
