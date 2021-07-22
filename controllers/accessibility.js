@@ -97,13 +97,20 @@ const routes = {
       } else {
         console.log("el usuario  NO EXISTE");
         res.json({
-          mensaje: "El usuario no existe",
+          mensaje: "El email o la password es erróneo",
           status: "false",
           token: "",
         });
       }
     } catch {
+      res.json({
+        mensaje: "El email o la password es erróneo",
+        status: "false",
+        token: "",
+      });
+
       console.log("el usuario no existe, se tiene que registrar");
+
     }
   },
 
