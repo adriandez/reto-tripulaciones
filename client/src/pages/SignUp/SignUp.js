@@ -19,6 +19,10 @@ const SignUp = () => {
  
 
     let registerUser = await axios.post("/auth/createUser", obj);
+
+     alert("usuario registrado")
+     window.location = "/signin";
+
   };
 
   return (

@@ -2,7 +2,6 @@ import "./SignIn.scss";
 import Cookies from "universal-cookie";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
-
 import axios from "axios";
 import { useState, useEffect } from "react";
 import loginService from "../../services/login";
@@ -22,7 +21,6 @@ const SignIn = () => {
     if (checkingCookies) {
       window.location = "/demo";
     } else if (checkingCookies === null) {
-      console.log("no hay token");
     }
   }, []);
 
@@ -42,19 +40,14 @@ const SignIn = () => {
         setUser(response);
         setUsername("");
         setPassword("");
-
         let prueba = cookies.set("myCookie", response.token);
 
-        console.log(prueba)
-        
         alert("Se ha logueado correctamente");
 
         window.location = "/demo";
       }
     } catch (e) {
-
       alert("el usuario no existe");
-
     }
   };
 
@@ -68,13 +61,10 @@ const SignIn = () => {
     };
 
     let cookieToken = await axios.post("/auth/googleLogin", googleLogin);
-
-      
  
     const cookies = new Cookies();
     let metercookie = await cookies.set("myCookie", cookieToken.data.token);
-    console.log(metercookie)
-    alert("Se ha logueado correctamente"+cookieToken.data.token);
+    alert("Se ha logueado correctamente" );
 
    window.location.reload();   
   }
@@ -95,12 +85,10 @@ const SignIn = () => {
 
     let cookieToken = await axios.post("/auth/facebookLogin", FacebookLogin);
 
-    console.log(cookieToken)
     
     const cookies = new Cookies();
    let metercookie = await cookies.set("myCookie", cookieToken.data.token);
     
-   console.log(metercookie)
     alert("Se ha logueado correctamente");
 
     window.location.reload();  
