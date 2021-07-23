@@ -53,9 +53,14 @@ const routes = {
     }
   },
   getByID: async (req, res) => {
+    
     console.log(req.params);
+    
     try {
-      const response = await aseo.findOne({ where: req.params });
+      const response = await aseo.findOne({ where:  req.params });
+     
+
+
       res.status(200).json(response);
     } catch (err) {
       console.log(err);

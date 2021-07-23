@@ -13,12 +13,16 @@ const Home = () => {
   const [allWcs, setAllWcs] = useState([]);
   const [search, setSearch] = useState("");
   const [listSearch, setListSearch] = useState([]);
+  const [markerSelected, setmarkerSelected] = useState([]);
+  const [remainingMarkers, setRemainMarkers] = useState([])
 
   useEffect(() => {
     axios.get("/aseos").then((resultado) => {
       setAllWcs(resultado.data);
     });
   }, []);
+
+ 
 
   useEffect(() => {
     filterSearch();
@@ -27,9 +31,6 @@ const Home = () => {
   const filterSearch = () => {
     let arraysss = [];
 
-    console.log(allWcs);
-
-    console.log(search);
     document.getElementById("resultsSearch").innerHTML = "";
 
     for (let wcs of allWcs) {
@@ -54,27 +55,51 @@ const Home = () => {
     };
     let resultWc = await axios.post("/api/search", obj);
 
-    console.log(resultWc.data);
-
     setWc(resultWc.data);
   };
 
-  const [viewport, setViewport] = useState({
-    width: "100vw",
-    height: "90vh",
-    latitude: 40.4205026,
-    longitude: -3.7254743,
-    zoom: 10,
-  });
-  console.log(wc);
-
   const paintSearch = () => {
-    return filtrados.map((item) => (
-      <p className="listWcs">
-        <Link to={paintMarker(item.codigoAseo)}>{item.nombre}</Link>
+    return filtrados.map((item, i) => (
+      <p className="listWcs" key={i}>
+        <Link onClick={() => paintMarker(item.aseo_ID)}>{item.nombre} </Link>
       </p>
     ));
   };
+
+  const paintMarker = (banio) => {
+    document.getElementById("resultsSearch").style.display = "none";
+    /*   document.getElementById("resultsSearch").style.display = "none"; */
+
+   
+    axios.get(`/aseos/${banio}`).then((resultado) => {
+      
+      setmarkerSelected([resultado.data]);
+      filtrarDatos([resultado.data])
+    });
+ 
+    
+
+ 
+
+  
+ 
+  };
+ 
+  const filtrarDatos = (datos) =>{
+
+
+    console.log(datos[0].aseo_ID)
+    console.log(filtrados)
+
+     let arraylimpio = allWcs.filter((item)=> item.codigoAseo !== `${datos[0].codigoAseo}` )
+     console.log(arraylimpio)  
+     setRemainMarkers(arraylimpio)     
+
+  }
+  
+
+ console.log(remainingMarkers)
+ 
 
   const openPopup = (index) => {
     document.getElementById("resultado").style.display = "block";
@@ -97,30 +122,23 @@ const Home = () => {
     e.preventDefault();
     let wcToSearch = e.target.value;
 
-    console.log(wcToSearch);
-
     if (wcToSearch.trim() == "") {
       document.getElementById("resultsSearch").innerText = "";
     } else {
       debounce(() => setSearch(wcToSearch), 1500);
     }
   };
-  const paintMarker = (user) => {
-    document.getElementById("resultsSearch").style.display = "none";
+
+  const [viewport, setViewport] = useState({
+    width: "100vw",
+    height: "90vh",
+    latitude: 40.4205026,
+    longitude: -3.7254743,
+    zoom: 10,
+  });
 
  
-
-    let arraysss = [];
-
-    for (let wcs of allWcs) {
-      let nombre = wcs.codigoAseo.toLowerCase();
-
-      if (nombre.indexOf(user) !== -1) {
-        arraysss.push(wcs);
-      }
-    }
-  };
-
+ 
   return (
     <div>
       <section className="Home">
@@ -142,9 +160,28 @@ const Home = () => {
             {...viewport}
             onViewportChange={(nextViewport) => setViewport(nextViewport)}
           >
-            {paintMarker}
             
-            {filtrados.map((item, i) => (
+            {markerSelected===[]? console.log("no hay datos") : markerSelected.map((item, i) => (
+    <Marker
+      key={i}
+      latitude={item.latitud}
+      longitude={item.longitud}
+      offsetLeft={-20}
+      offsetTop={-30}
+    >
+      <div
+        className="marker2"
+        tabIndex="0"
+        onFocus={() => openPopup(item.nombre)}
+      ></div>
+    </Marker>
+  )) 
+  
+  
+  }
+  
+
+            { remainingMarkers? remainingMarkers.map((item, i) => (
               <Marker
                 key={i}
                 latitude={item.latitud}
@@ -158,7 +195,23 @@ const Home = () => {
                   onFocus={() => openPopup(item.nombre)}
                 ></div>
               </Marker>
-            ))}
+            )): ""}  
+         
+             {/* {remainingMarkers? remainingMarkers.map((item, i) => (
+              <Marker
+                key={i}
+                latitude={item.latitud}
+                longitude={item.longitud}
+                offsetLeft={-20}
+                offsetTop={-30}
+              >
+                <div
+                  className="marker"
+                  tabIndex="0"
+                  onFocus={() => openPopup(item.nombre)}
+                ></div>
+              </Marker>
+            )): ""}  */}
           </ReactMapGL>
         </div>
       </section>

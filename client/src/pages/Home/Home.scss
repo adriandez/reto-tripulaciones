@@ -19,6 +19,16 @@ img{
   height: 30px;
   
 }
+.marker2{
+
+  background-image: url("../../img/marker2.png");
+  
+  background-size: cover;
+  width: 20px;
+  height: 30px;
+  
+}
+
 
 .marker:focus{
 
@@ -79,7 +89,7 @@ img{
  }
  .listWcs{
  
-  
+  display: block;
   display: absolute;
   padding-left: 30px;
  
