@@ -95,6 +95,16 @@ const Home = () => {
      console.log(arraylimpio)  
      setRemainMarkers(arraylimpio)     
 
+setViewport
+     ({
+      width: "100vw",
+      height: "90vh",
+      latitude: datos[0].latitud,
+      longitude: datos[0].longitud,
+      zoom: 13,
+    });
+
+
   }
   
 
