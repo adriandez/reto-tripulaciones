@@ -1,6 +1,6 @@
 const { user } = require("../utils/database");
 const bcrypt = require("bcrypt");
-const aseos = require("../aseos.json")
+const aseos = require("../data.json")
 
 const routes = {
   hello: (req, res) => {
@@ -37,13 +37,18 @@ const routes = {
       console.log(err);
     }
   },
+  allWcs: async (req,res) =>{
+    
+    res.status(200).json(aseos);
+
+  },
   findWc: async (req, res) => {
     try {
 
       console.log(aseos)
       console.log(req.body)
 
-      let WCS = [
+     /*  let WCS = [
         {
           id: 1,
           name: "Bar Paco",
@@ -86,13 +91,13 @@ const routes = {
 
         
       ];
-
+ */
 
 
 
 
     /*   const response = await user.findOne({ where: req.body }); */
-      res.status(200).json(WCS);
+/*       res.status(200).json(aseos); */
     } catch (err) {
       console.log(err);
     }

@@ -7,5 +7,5 @@ router.post("/create", routes.createUser);
 router.post("/user", routes.findUser);
 router.post("/api/search",routes.findWc)
 
-
+router.get("/api/allWcs",routes.allWcs)
 module.exports = router;

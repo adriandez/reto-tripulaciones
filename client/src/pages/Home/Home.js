@@ -1,12 +1,59 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
+import { debounce } from "debounce-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import MarkerImg from "../../img/marker.png";
 import "./Home.scss";
 
 const Home = () => {
   const [wc, setWc] = useState([]);
+  const [filtrados, setFiltrados] = useState([]);
+  const [allWcs, setAllWcs] = useState([]);
+   const [search, setSearch] = useState("");
+  const [listSearch, setListSearch] = useState([]);
+
+  useEffect(() => {
+    axios("/api/allWcs").then((resultado) => {
+  
+      setAllWcs(resultado.data);
+    
+    });
+  }, []);
+
+ 
+  useEffect(() => {
+    filterSearch();
+  }, [search]);
+
+  const filterSearch = () => {
+    let arraysss = [];
+
+console.log(allWcs)
+
+console.log(search)
+document.getElementById("resultsSearch").innerHTML = ""
+
+for (let wcs of allWcs) {
+
+  let searchlCase = search.toLowerCase();
+
+  let nombre = wcs.nombre.toLowerCase();
+
+  if (nombre.indexOf(searchlCase) !== -1) {
+    arraysss.push(wcs);
+    setFiltrados(arraysss);
+  }
+
+
+}
+
+ 
+  };
+
+ 
+
   const searchWc = async (e) => {
     e.preventDefault();
 
@@ -23,78 +70,127 @@ const Home = () => {
   };
 
   const [viewport, setViewport] = useState({
-    width: "80vw",
-    height: "40vh",
+    
+    width: "100vw",
+    height: "90vh",
     latitude: 40.4205026,
     longitude: -3.7254743,
     zoom: 10,
   });
   console.log(wc);
 
-  const mapeo = () => {};
-  /* 
-  const popUp = () =>{
+ 
+  const paintSearch = () => {
+    return filtrados.map((item) => (
+      <p className="listWcs"> 
+       <Link  to={paintMarker(item.codigoAseo)} >{item.nombre}</Link>
+ 
+      </p>
+    ));
+  };
 
 
-    var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-      'Construction on the Washington Monument began in 1848.'
-      );
-
-      return popup
-  } */
-
-
+ 
 
 
   const openPopup = (index) => {
+
+    document.getElementById("resultado").style.display="block"
     document.getElementById("resultado").innerHTML = `
 
 
-<p><h2>${wc[index].name} </h2></p>
+<p> ${index}  </p>
 <p><img src="https://www.seekpng.com/png/detail/199-1996608_star-rating-3-5-stars.png"></p>
 <p>Ahorarr dolore eiusmod apetecan la caidita ...</p>
-<p><img src=${wc[index].img}/> </p>
+ 
 
 
 
 `;
   };
 
-  const paintPopup = () =>{
-    
+  const wcSearch = (e) => {
+    document.getElementById("resultsSearch").innerText = "";
 
 
+    e.preventDefault();
+    let wcToSearch = e.target.value;
+
+    console.log(wcToSearch)
+
+    if (wcToSearch.trim() == "") {
+      document.getElementById("resultsSearch").innerText = "";
+    } else {
+      debounce(() => setSearch(wcToSearch), 1500);
+    }
+  };
+   const paintMarker = (user) =>{
+    document.getElementById("resultsSearch").style.display="none"
+ 
+ console.log(user)
+
+ 
+ 
+  
+let arraysss = []
+
+ for (let wcs of allWcs) {
+
+  
+
+  let nombre = wcs.codigoAseo.toLowerCase();
+
+  if (nombre.indexOf(user) !== -1) {
+   
+console.log(wcs)
+arraysss.push(wcs)
+console.log(arraysss)
+
+ 
   }
+
+
+}
+
+ 
+    
+   }
 
   return (
     <div>
-      <form onSubmit={searchWc}>
-        <label>Buscar WC</label>
-        <input type="text" name="wc" />
-        <button>BUSCAR</button>
-      </form>
+      
       <section className="Home">
+      <form onSubmit={searchWc}>
+ 
+        <input type="text" className="input" placeholder="Buscar Wc" name="wc" onChange={wcSearch} />
+  
+      </form>
+      <div id="resultsSearch" className="resultsSearch">
+          {search ? paintSearch() : ""}
+        </div>
+        <div className="map">
         <ReactMapGL
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
           {...viewport}
           onViewportChange={(nextViewport) => setViewport(nextViewport)}
         >
-          {wc.map((item, i) => (
+          {filtrados.map((item, i) => (
             <Marker
               key={i}
-              latitude={item.latitude}
-              longitude={item.longitude}
+              latitude={item.latitud}
+              longitude={item.longitud}
               offsetLeft={-20}
               offsetTop={-30}
             >
-              <div className="marker" tabIndex="0" onFocus={() => openPopup(item.id)}>
-                {/*     <span><b>{i + 1}</b></span> */}
+              <div className="marker" tabIndex="0" onFocus={() => openPopup(item.nombre)}>
+              
               </div>
             </Marker>
           ))}
 
  
         </ReactMapGL>
+        </div>
       </section>
 
       <div id="resultado" className="popUp">
