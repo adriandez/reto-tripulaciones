@@ -1,41 +1,32 @@
 .Home {
-   
-  >h3{
-      margin-top:5px;
-      margin-bottom:5px;
+  > h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
-img{
-
-
+img {
   width: 50%;
 }
-.marker{
-
+.marker {
   background-image: url("../../img/marker.png");
-  
+
   background-size: cover;
   width: 20px;
   height: 30px;
-  
 }
-.marker2{
-
+.marker2 {
   background-image: url("../../img/marker2.png");
-  
+
   background-size: cover;
   width: 20px;
   height: 30px;
-  
 }
 
-
-.marker:focus{
-
+.marker:focus {
   outline: 2px solid blue;
 }
 
-.popUp{
+.popUp {
   display: flex;
   display: none;
   margin-top: -50%;
@@ -53,50 +44,59 @@ img{
 }
 
 .mapboxgl-marker {
-
-
-
-
-
-
 }
 
 .mapboxgl-marker:focus {
-  background-color: red;}
-
-.resultsSearch{
- font-size: 1rem;
-}
- input{
-  margin-top: 20px;
- 
-  height: 30px;
-  position: absolute;
-  z-index: 3;
-  border-radius: 20px;
-  
- }
- #map{
-
-
   background-color: red;
- }
- 
- .map{
+}
+
+.resultsSearch {
+ display: none;
+  z-index: 4;
+  font-size: 1rem;
+  /* margin-top: 100px; */
+  padding-top: 100px;
+  margin-top: 100px;
+  position: absolute;
+  background: white;
+  width: 80%;
+  margin-left: 5%;
+  padding: 5%;
+  margin-right: 5%;
+}
+
+#map {
+  background-color: red;
+}
 
  
-
- }
- .listWcs{
- 
-  display: block;
-  display: absolute;
-  padding-left: 30px;
- 
- }
- .overlays{
-
+.overlays {
   margin-top: 0px;
   position: absolute;
   z-index: 2;
- }
+}
+.search {
+  margin-left: 10%;
+  margin-right: 10%;
+  position: absolute;
+  z-index: 3;
+  background-color: white;
+  margin-top: 15px;
+
+  height: 50px;
+
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-bottom: 100px;
+}
+.search > form > input {
+  margin-left: 10%;
+  width: 70%;
+  padding-top: 10px;
+  border: 0px;
+}
+.search > form > img {
+  padding-right: 5px;
+  padding-top: 8px;
+  width: 6%;
+}

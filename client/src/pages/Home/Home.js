@@ -5,6 +5,7 @@ import { debounce } from "debounce-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import MarkerImg from "../../img/marker.png";
+import SearchImg from "../../img/search.png"
 import "./Home.scss";
 
 const Home = () => {
@@ -59,6 +60,7 @@ const Home = () => {
   };
 
   const paintSearch = () => {
+    document.getElementById("resultsSearch").style.display = "block";
     return filtrados.map((item, i) => (
       <p className="listWcs" key={i}>
         <Link onClick={() => paintMarker(item.aseo_ID)}>{item.nombre} </Link>
@@ -67,8 +69,9 @@ const Home = () => {
   };
 
   const paintMarker = (banio) => {
-    document.getElementById("resultsSearch").style.display = "none";
-    /*   document.getElementById("resultsSearch").style.display = "none"; */
+ 
+    document.getElementById("resultsSearch").style.display="none"
+    
 
    
     axios.get(`/aseos/${banio}`).then((resultado) => {
@@ -87,12 +90,10 @@ const Home = () => {
  
   const filtrarDatos = (datos) =>{
 
-
-    console.log(datos[0].aseo_ID)
-    console.log(filtrados)
+ 
 
      let arraylimpio = allWcs.filter((item)=> item.codigoAseo !== `${datos[0].codigoAseo}` )
-     console.log(arraylimpio)  
+ 
      setRemainMarkers(arraylimpio)     
 
 setViewport
@@ -108,7 +109,7 @@ setViewport
   }
   
 
- console.log(remainingMarkers)
+ 
  
 
   const openPopup = (index) => {
@@ -152,15 +153,22 @@ setViewport
   return (
     <div>
       <section className="Home">
+      <div className="search">
         <form onSubmit={searchWc}>
+        
           <input
             type="text"
             className="input"
             placeholder="Buscar Wc"
             name="wc"
             onChange={wcSearch}
-          />
+          >
+            
+            
+            </input>
+            <img type="submit" className="searchIcon" src={SearchImg}></img>
         </form>
+        </div>
         <div id="resultsSearch" className="resultsSearch">
           {search ? paintSearch() : ""}
         </div>
