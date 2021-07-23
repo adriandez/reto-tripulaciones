@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
   process.env.MY_SQL_PASSWORD,
   {
     dialect: "mysql",
+    dialectOptions: { connectTimeout: 1000 },
     host: process.env.MY_SQL_HOST,
     port: process.env.MY_SQL_PORT,
     pool: {
@@ -28,4 +29,6 @@ const aseo = AseoModel(sequelize, DataTypes);
 const raiting = RaitingModel(sequelize, DataTypes);
 const userRaiting = UserRaitingModel(sequelize, DataTypes);
 
+ 
 module.exports = { sequelize, user, aseo, raiting, userRaiting };
+ 

@@ -1,9 +1,92 @@
 .Home {
-  display: flex;
-  flex-direction: column;
-  padding: 8%;
+   
   >h3{
       margin-top:5px;
       margin-bottom:5px;
   }
 }
+img{
+
+
+  width: 50%;
+}
+.marker{
+
+  background-image: url("../../img/marker.png");
+  
+  background-size: cover;
+  width: 20px;
+  height: 30px;
+  
+}
+
+.marker:focus{
+
+  outline: 2px solid blue;
+}
+
+.popUp{
+  display: flex;
+  display: none;
+  margin-top: -50%;
+  width: 80%;
+  height: 20%;
+  position: absolute;
+  z-index: 3;
+  padding: 10px;
+  position: absolute;
+  z-index: 3;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 8%;
+  font-size: 1rem;
+}
+
+.mapboxgl-marker {
+
+
+
+
+
+
+}
+
+.mapboxgl-marker:focus {
+  background-color: red;}
+
+.resultsSearch{
+ font-size: 1rem;
+}
+ input{
+  margin-top: 20px;
+ 
+  height: 30px;
+  position: absolute;
+  z-index: 3;
+  border-radius: 20px;
+  
+ }
+ #map{
+
+
+  background-color: red;
+ }
+ 
+ .map{
+
+ 
+
+ }
+ .listWcs{
+ 
+ 
+  display: absolute;
+  padding-left: 30px;
+ 
+ }
+ .overlays{
+
+  margin-top: 0px;
+  position: absolute;
+  z-index: 2;
+ }
