@@ -30,11 +30,14 @@ app.use((err, req, res, next) => {
 
 // Conexion a base de datos
 // force: true => DROP TABLES
-sequelize.sync({ force: false }).then(() => {
-  console.log("Connected to DB");
-  app.listen(process.env.PORT, () => {
-    console.log(
-      `Example app listening at http://localhost:${process.env.PORT}`
-    );
-  });
-});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("Connected to DB");
+    app.listen(process.env.PORT, () => {
+      console.log(
+        `Example app listening at http://localhost:${process.env.PORT}`
+      );
+    });
+  })
+  .catch((err) => console.log("sequelize err", err));
