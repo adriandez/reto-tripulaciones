@@ -4,9 +4,7 @@
     margin-bottom: 5px;
   }
 }
-img {
-  width: 50%;
-}
+ 
 .marker {
   background-image: url("../../img/marker.png");
 
@@ -51,9 +49,11 @@ img {
 }
 
 .resultsSearch {
+
+  border-radius: 10px;
  display: none;
   z-index: 4;
-  font-size: 1rem;
+  font-size: 0.8rem;
   /* margin-top: 100px; */
   padding-top: 100px;
   margin-top: 100px;
@@ -62,8 +62,16 @@ img {
   width: 80%;
   margin-left: 5%;
   padding: 5%;
+  height: 15%;
   margin-right: 5%;
+  overflow: scroll;
+  white-space: nowrap;
 }
+.listWcs > a{
+  text-decoration: none;
+  color: black;
+}
+ 
 
 #map {
   background-color: red;
@@ -89,13 +97,13 @@ img {
   padding-top: 10px;
   margin-bottom: 100px;
 }
-.search > form > input {
+.search > form > input[type="text"] {
   margin-left: 10%;
   width: 70%;
   padding-top: 10px;
   border: 0px;
 }
-.search > form > img {
+.search > form > input[type="image"] {
   padding-right: 5px;
   padding-top: 8px;
   width: 6%;

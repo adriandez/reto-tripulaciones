@@ -127,18 +127,7 @@ setViewport
 `;
   };
 
-  const wcSearch = (e) => {
-    document.getElementById("resultsSearch").innerText = "";
-
-    e.preventDefault();
-    let wcToSearch = e.target.value;
-
-    if (wcToSearch.trim() == "") {
-      document.getElementById("resultsSearch").innerText = "";
-    } else {
-      debounce(() => setSearch(wcToSearch), 1500);
-    }
-  };
+ 
 
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -148,25 +137,36 @@ setViewport
     zoom: 10,
   });
 
+  const submitForm = (e) => {
+ 
+     console.log(e.target.wc.value)
+    document.getElementById("resultsSearch").innerText = "";
+
+    e.preventDefault();
+    let wcToSearch = e.target.wc.value;
+
+    setSearch(wcToSearch) 
+    }
  
  
   return (
     <div>
       <section className="Home">
       <div className="search">
-        <form onSubmit={searchWc}>
+        <form onSubmit={submitForm}>
         
           <input
             type="text"
             className="input"
             placeholder="Buscar Wc"
             name="wc"
-            onChange={wcSearch}
+          /*   onChange={wcSearch} */
           >
             
-            
+
             </input>
-            <img type="submit" className="searchIcon" src={SearchImg}></img>
+            <input type="image" alt="Submit"   src={SearchImg}/> 
+
         </form>
         </div>
         <div id="resultsSearch" className="resultsSearch">
