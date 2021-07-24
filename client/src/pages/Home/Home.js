@@ -20,6 +20,9 @@ const Home = () => {
   const [remainingMarkers, setRemainMarkers] = useState([]);
   const [globalRating, setGlobalRating] = useState([]);
   const [showDiv, setShowDiv] = useState(false);
+  const [showPopUp, setshowPopUp] = useState(false);
+  const [info, setInfo] = useState("");
+  const [sos, setSos] = useState(false)
 
   useEffect(() => {
     axios.get("/aseos").then((resultado) => {
@@ -33,12 +36,27 @@ const Home = () => {
 
   useEffect(() => {
     if (showDiv == false) {
-      console.log("ahora es falso");
       document.getElementById("resultsSearch").style.display = "none";
     } else if (showDiv == true) {
       document.getElementById("resultsSearch").style.display = "block";
     }
   }, [showDiv]);
+
+  useEffect(() => {
+    if (sos == false) {
+      document.getElementById("sos").className="sos2";
+    } else if (sos == true) {
+      document.getElementById("sos").className="sos";
+    }
+  }, [sos]);
+
+  useEffect(() => {
+    if (showPopUp == false) {
+      document.getElementById("resultado").style.display = "none";
+    } else if (showPopUp == true) {
+      document.getElementById("resultado").style.display = "block";
+    }
+  }, [showPopUp]);
 
   const filterSearch = () => {
     let arraysss = [];
@@ -110,7 +128,8 @@ const Home = () => {
   };
 
   const openPopup = (nombre, latitud, longitud, aseo) => {
-    document.getElementById("resultado").style.display = "block";
+    setshowPopUp(true);
+    setSos(true)
 
     axios.get(`/aseos/raiting/${aseo}`).then((resultado) => {
       let thumbnail = {
@@ -134,23 +153,28 @@ const Home = () => {
   });
 
   const submitForm = (e) => {
+    setshowPopUp(false);
+    setSos(false)
     e.preventDefault();
-   
+
     if (filtrados === []) {
       let wcToSearch = e.target.wc.value;
 
       setSearch(wcToSearch);
-      setShowDiv(true)
-  
+      setShowDiv(true);
     } else {
-      setFiltrados([]);
-      setShowDiv(true)
       let wcToSearch = e.target.wc.value;
+      if (search === wcToSearch) {
+        setShowDiv(true);
+        setInfo("el baño que as introducido ya existe");
+      } else {
+        setFiltrados([]);
+        setShowDiv(true);
 
-      setSearch(wcToSearch);
- 
+        setSearch(wcToSearch);
+      }
     }
-    e.target.reset()
+    e.target.reset();
   };
 
   const stars = () => {
@@ -172,8 +196,6 @@ const Home = () => {
       </div>
     );
   };
-
-  console.log(filtrados);
 
   return (
     <div>
@@ -248,6 +270,10 @@ const Home = () => {
                 ))
               : ""}
           </ReactMapGL>
+        </div>
+        <div>
+<button id="sos" className="sos">SOS</button>
+
         </div>
       </section>
 
