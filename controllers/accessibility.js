@@ -1,42 +1,24 @@
 const { user } = require("../utils/database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const verify = require("../middleware/verifyToken");
+
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
 const mySecret = process.env.SECRET;
+const clientSecret = process.env.CLIENT_SECRET;
 
 const routes = {
-  hello: (req, res) => {
-    try {
-      res.status(200).json({ message: "Say Hello to my little friend" });
-    } catch (err) {
-      console.log(err);
-    }
-  },
   checkToken: async (req, res) => {
     let token = req.body.token;
-
-    const base64Url = await token.split(".")[1];
-
-    let decoding = new Buffer(base64Url, "base64");
-    let tokenDecoding = decoding.toString("ascii");
-
-    var decodedValue = JSON.parse(tokenDecoding);
-
-    const response2 = await user.findOne({
-      where: { user_ID: decodedValue.user_ID },
-    });
-
-    console.log(response2.dataValues);
-
-    res.status(200).json(response2.dataValues);
+    const decrypt = jwt.verify(token, mySecret);
+    res.status(200).json(decrypt);
   },
   createUser: async (req, res) => {
-    console.log(req.body);
-
     const { name, email, password } = req.body;
-
     const hashedPassword = await bcrypt.hash(password, 11);
     const entry = { name: name, email: email, password: hashedPassword };
-    console.log(entry);
     try {
       await user
         .create(entry)
@@ -61,31 +43,24 @@ const routes = {
   },
   login: async (req, res) => {
     try {
-      const { username, password } = req.body;
-
-      const project = await user.findOne({ where: { email: username } });
-
-      console.log(project);
-      let user_ID = project.dataValues.user_ID;
-      let nameUser = project.dataValues.name;
-
-      let passUserDatabase = project.dataValues.password;
-
+      const { email, password } = req.body;
+      const dbRes = await user.findOne({ where: { email: email } });
+      let user_ID = dbRes.dataValues.user_ID;
+      let nameUser = dbRes.dataValues.name;
+      let passUserDatabase = dbRes.dataValues.password;
       const isMatch = await bcrypt.compare(password, passUserDatabase);
-
-      if (project !== null && isMatch) {
+      if (dbRes !== null && isMatch) {
         const payload = {
           user_ID: user_ID,
           name: nameUser,
+          auth: true,
+          google: false,
         };
-
         jwt.sign(
           payload,
           mySecret,
-
           (err, token) => {
-            res.cookie(token);
-
+            res.cookie("reto", token);
             res.json({
               mensaje: "El usuario no existe",
               status: "true",
@@ -93,156 +68,51 @@ const routes = {
             });
           }
         );
-        console.log("el usuario EXISTE");
       } else {
-        console.log("el usuario  NO EXISTE");
         res.json({
-          mensaje: "El email o la password es erróneo",
+          mensaje: "Validación erronea",
           status: "false",
           token: "",
         });
       }
-    } catch {
-      res.json({
-        mensaje: "El email o la password es erróneo",
-        status: "false",
-        token: "",
-      });
-
-      console.log("el usuario no existe, se tiene que registrar");
-
+    } catch (err) {
+      console.log(err);
     }
   },
 
   googleLogin: async (req, res) => {
-    const { email, name, password } = req.body;
-
-    const project = await user.findOne({ where: { email: email } });
-
-    if (project === null) {
-      const hashedPassword = await bcrypt.hash(password, 11);
-      const entry = { name: name, email: email, password: hashedPassword };
-      console.log(entry);
-      try {
-        await user
-          .create(entry)
-          .then((newUser) => {
-            console.log(newUser);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-          const project = await user.findOne({ where: { email: email } });
-
-          let user_ID = project.dataValues.user_ID;
-          let nameUser = project.dataValues.name;
-    
-          const payload = {
-            user_ID: user_ID,
-            name: nameUser,
-          };
-    
-          jwt.sign(   payload,  mySecret,
-            (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
-            }
-          );
-
-
-
-/*         res.status(200).json({ message: `CREATED User: ${entry.name}` }); */
-      } catch (err) {
-        console.log(err);
-      }
-    } else if (project !== null) {
-      const project = await user.findOne({ where: { email: email } });
-
-      let user_ID = project.dataValues.user_ID;
-      let nameUser = project.dataValues.name;
-
+    const token = req.body.token;
+    const verify = async () => {
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.CLIENT_ID,
+      });
+      const payload2 = ticket.getPayload();
       const payload = {
-        user_ID: user_ID,
-        name: nameUser,
+        user_ID: payload2["sub"],
+        name: payload2["given_name"],
+        auth: true,
+        google: true,
       };
-
-      jwt.sign(   payload,  mySecret,
-        (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
-        }
-      );
-      console.log("el usuario EXISTE");
-    }
-  },
-  facebookLogin: async (req, res) => {
-    const { email, name, password } = req.body;
-
-    const project = await user.findOne({ where: { email: email } });
-
-    if (project === null) {
-      const hashedPassword = await bcrypt.hash(password, 11);
-      const entry = { name: name, email: email, password: hashedPassword };
-      console.log(entry);
-      try {
-        await user
-          .create(entry)
-          .then((newUser) => {
-            console.log(newUser);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-          const project = await user.findOne({ where: { email: email } });
-
-          let user_ID = project.dataValues.user_ID;
-          let nameUser = project.dataValues.name;
-    
-          const payload = {
-            user_ID: user_ID,
-            name: nameUser,
-          };
-    
-          jwt.sign(   payload,  mySecret,
-            (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
-            }
-          );
-
-
-
-      } catch (err) {
-        console.log(err);
-      }
-    } else if (project !== null) {
-      const project = await user.findOne({ where: { email: email } });
-
-      let user_ID = project.dataValues.user_ID;
-      let nameUser = project.dataValues.name;
-
-      const payload = {
-        user_ID: user_ID,
-        name: nameUser,
-      };
-
-      jwt.sign(   payload,  mySecret,
-        (err, token) => { res.cookie(token);  res.json({ mensaje: "El usuario no existe", status: "true", token: token,  });
-        }
-      );
-      console.log("el usuario EXISTE");
-    }
-  },
-
-  posts: (req, res) => {
-    jwt.verify(req.token, "secretkey", (error, authData) => {
-      if (error) {
-        res.sendStatus(403);
-      } else {
+      jwt.sign(payload, mySecret, (err, token) => {
+        res.cookie("reto", token);
         res.json({
-          mensaje: "postveriffy fue creado",
-          authData,
+          mensaje: "Usuario Verificado",
+          status: "true",
+          token: token,
         });
-      }
-    });
-
-    res.json({ mensaje: "Postssss fué creado" });
+      });
+    };
+    verify().catch(console.error);
+  },
+  posts: (req, res) => {
+    try {
+      const decrypt = jwt.verify(req.body.token, mySecret);
+      if (decrypt.auth) res.send("success")
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(403);
+    }
   },
 };
 

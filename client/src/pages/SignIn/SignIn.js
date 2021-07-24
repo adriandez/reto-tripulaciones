@@ -1,158 +1,71 @@
-import "./SignIn.scss";
-import Cookies from "universal-cookie";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import loginService from "../../services/login";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import useAxiosPost from "../../hooks/useAxiosPost";
+import { Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
+import useCookie from "../../hooks/useCookie";
 
-const cookies = new Cookies();
+import "./SignIn.scss";
 
 const SignIn = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
-  const [message, setMessage] = useState("");
+  const cookie = useCookie();
 
   useEffect(() => {
-    let checkingCookies = cookies.get("myCookie");
-
-    if (checkingCookies) {
-      window.location = "/demo";
-    } else if (checkingCookies === null) {
-    }
-  }, []);
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-
-    const clearForm = () =>{ return event.target.Password.value ="" ,event.target.Username.value="" }
-
-    if (event.target.Username.value === "") {
-      setMessage("No puede estar vacio el email");
-      clearForm();
-    } else if (event.target.Password.value === "") {
-      setMessage("Password no puede estar vacio");
-      clearForm();
-
-    } else if (
-      event.target.Username.value !== 0 &&
-      event.target.Password.value !== 0
-    ) {
-      const response = await loginService.login({
-        username,
-        password,
-      });
-
-      console.log(response);
-
-      if (response.status === "false") {
-        setMessage("El email o password es erróneo");
- 
-        clearForm();
-
-      } else if (response.status === "true") {
-        setUser(response);
-        setUsername("");
-        setPassword("");
-        let prueba = cookies.set("myCookie", response.token);
-        clearForm();
-
-        setMessage("Se ha logueado correctamente");
-
-        window.location = "/demo";
+    if (cookie) {
+      console.log(cookie);
+      if (cookie.data.auth) {
+        window.location = "/map";
       }
     }
-  };
+  }, [cookie]);
 
-  const responseGoogle = async (respuesta) => {
-    try {
-      let googleLogin = {
-        name: respuesta.profileObj.name,
-        email: respuesta.profileObj.email,
-        password: respuesta.profileObj.googleId,
-      };
+  const [route] = useState("/auth/login");
+  const [signIn, setSingIn] = useState();
+  useAxiosPost(route, signIn);
 
-      let cookieToken = await axios.post("/auth/googleLogin", googleLogin);
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
 
-      const cookies = new Cookies();
-      let metercookie = await cookies.set("myCookie", cookieToken.data.token);
-
-      window.location.reload();
-    } catch {}
-  };
-  const responseFacebook = async (respuesta) => {
-    let FacebookLogin = {
-      name: respuesta.name,
-      email: respuesta.email,
-      password: respuesta.id,
-    };
-
-    let cookieToken = await axios.post("/auth/facebookLogin", FacebookLogin);
-
-    const cookies = new Cookies();
-    let metercookie = await cookies.set("myCookie", cookieToken.data.token);
-
-    window.location.reload();
-  };
-  const componentClicked = () => {};
-  const googleLogin = () => {
-    return (
-      <GoogleLogin
-        clientId={process.env.REACT_APP_GG_API}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
-    );
-  };
-  const facebookLogin = () => {
-    return (
-      <FacebookLogin
-        appId={process.env.REACT_APP_FB_API}
-        autoLoad={false}
-        fields="name,email,picture"
-        onClick={componentClicked}
-        callback={responseFacebook}
-        textButton="Login con FB"
-        icon="fa-facebook"
-      />
-    );
+  const onSubmit = (data, e) => {
+    setSingIn(data);
+    e.target.reset();
   };
 
   return (
-    <div>
-      <form className="SignIn" onSubmit={handleLogin}>
+    <>
+      <Link to="/home">
+        <BiArrowBack />
+      </Link>
+      <form className="SignIn" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           Email:
           <input
             type="text"
             name="Username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            {...register("email", {
+              required: true,
+              pattern:
+                /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+            })}
           />
         </label>
         <label htmlFor="password">
-          {" "}
-          Password:{" "}
+          Password:
           <input
             type="password"
             name="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/,
+            })}
           />
         </label>
         <button type="submit">Sign In</button>
-        <br></br>
-        <p></p>
-
-        {googleLogin()}
-        <br></br>
-        {facebookLogin()}
       </form>
-      <div className="alertMessage">{message ? message : ""} </div>
-    </div>
+    </>
   );
 };
 

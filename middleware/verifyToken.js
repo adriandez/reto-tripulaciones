@@ -1,17 +1,15 @@
-const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser")
 const verify = {
   verifyToken: (req, res, next) => {
-    const bearerHeader = req.headers["authorization"];
-
-    if (typeof bearerHeader !== "undefined") {
+    if (typeof req.body.headers["Authorization"] !== undefined) {
+      const bearerHeader = req.body.headers["Authorization"];
       const bearerToken = bearerHeader.split(" ")[1];
-      req.token = bearerToken;
-
-      next();
+      req.body.token = bearerToken;
     } else {
       res.sendStatus(403);
     }
+
+    next();
   },
 };
+
 module.exports = verify;
