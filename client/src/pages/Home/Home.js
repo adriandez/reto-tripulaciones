@@ -19,6 +19,7 @@ const Home = () => {
   const [markerSelected, setmarkerSelected] = useState([]);
   const [remainingMarkers, setRemainMarkers] = useState([]);
   const [globalRating, setGlobalRating] = useState([]);
+  const [showDiv, setShowDiv] = useState(false);
 
   useEffect(() => {
     axios.get("/aseos").then((resultado) => {
@@ -30,9 +31,16 @@ const Home = () => {
     filterSearch();
   }, [search]);
 
-  /*   <StarRating totalStars={5} selected={value} />
+  useEffect(() => {
+    if (showDiv == false) {
+      console.log("ahora es falso");
+      document.getElementById("resultsSearch").style.display = "none";
+    } else if (showDiv == true) {
+      document.getElementById("resultsSearch").style.display = "block";
+    }
+  }, [showDiv]);
 
- */ const filterSearch = () => {
+  const filterSearch = () => {
     let arraysss = [];
 
     document.getElementById("resultsSearch").innerHTML = "";
@@ -63,11 +71,17 @@ const Home = () => {
   };
 
   const paintSearch = () => {
-    document.getElementById("resultsSearch").style.display = "block";
-
     return filtrados.map((item, i) => (
       <p className="listWcs" key={i}>
-        <Link onClick={() => paintMarker(item.aseo_ID)}>{item.nombre} </Link>
+        <Link
+          onClick={() => {
+            paintMarker(item.aseo_ID);
+
+            setShowDiv(false);
+          }}
+        >
+          {item.nombre}{" "}
+        </Link>
       </p>
     ));
   };
@@ -121,36 +135,22 @@ const Home = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if(filtrados===[]){
-
    
- 
-  
-  
-      
+    if (filtrados === []) {
       let wcToSearch = e.target.wc.value;
-  
+
       setSearch(wcToSearch);
-
-
-    }
-    else{
-
-      setFiltrados([])
- 
+      setShowDiv(true)
   
-  
-      
+    } else {
+      setFiltrados([]);
+      setShowDiv(true)
       let wcToSearch = e.target.wc.value;
-  
+
       setSearch(wcToSearch);
-
-
-    }
-
  
-
-  
+    }
+    e.target.reset()
   };
 
   const stars = () => {
@@ -172,9 +172,8 @@ const Home = () => {
       </div>
     );
   };
-  
 
-  console.log(filtrados)
+  console.log(filtrados);
 
   return (
     <div>
