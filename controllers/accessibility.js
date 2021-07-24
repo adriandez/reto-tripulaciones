@@ -53,11 +53,30 @@ const routes = {
     }
   },
   getByID: async (req, res) => {
-    
+  
     console.log(req.params);
     
     try {
       const response = await aseo.findOne({ where:  req.params });
+     
+
+
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getRatingWc: async (req, res) => {
+
+    console.log("APUNTAAAAAAAAAAAAAAAAA")
+    
+    console.log("**********")
+    console.log(req.params);
+    console.log("**********")
+
+    
+    try {
+      const response = await raiting.findOne({ where:  req.params });
      
 
 

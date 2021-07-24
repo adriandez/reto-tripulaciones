@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import GoogleIcon from "../../img/ggmaps.png";
 import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import { debounce } from "debounce-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import MarkerImg from "../../img/marker.png";
-import SearchImg from "../../img/search.png"
+import SearchImg from "../../img/search.png";
+import StarRating from "../../util/Relevance";
 import "./Home.scss";
 
 const Home = () => {
@@ -15,7 +17,8 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [listSearch, setListSearch] = useState([]);
   const [markerSelected, setmarkerSelected] = useState([]);
-  const [remainingMarkers, setRemainMarkers] = useState([])
+  const [remainingMarkers, setRemainMarkers] = useState([]);
+  const [globalRating, setGlobalRating] = useState([]);
 
   useEffect(() => {
     axios.get("/aseos").then((resultado) => {
@@ -23,13 +26,13 @@ const Home = () => {
     });
   }, []);
 
- 
-
   useEffect(() => {
     filterSearch();
   }, [search]);
 
-  const filterSearch = () => {
+  /*   <StarRating totalStars={5} selected={value} />
+
+ */ const filterSearch = () => {
     let arraysss = [];
 
     document.getElementById("resultsSearch").innerHTML = "";
@@ -61,6 +64,7 @@ const Home = () => {
 
   const paintSearch = () => {
     document.getElementById("resultsSearch").style.display = "block";
+
     return filtrados.map((item, i) => (
       <p className="listWcs" key={i}>
         <Link onClick={() => paintMarker(item.aseo_ID)}>{item.nombre} </Link>
@@ -68,66 +72,44 @@ const Home = () => {
     ));
   };
 
-  const paintMarker = (banio) => {
- 
-    document.getElementById("resultsSearch").style.display="none"
-    
-
-   
-    axios.get(`/aseos/${banio}`).then((resultado) => {
-      
+  const paintMarker = (aseos) => {
+    axios.get(`/aseos/${aseos}`).then((resultado) => {
       setmarkerSelected([resultado.data]);
-      filtrarDatos([resultado.data])
+      filtrarDatos([resultado.data]);
     });
- 
-    
-
- 
-
-  
- 
   };
- 
-  const filtrarDatos = (datos) =>{
 
- 
+  const filtrarDatos = (datos) => {
+    let arraylimpio = allWcs.filter(
+      (item) => item.codigoAseo !== `${datos[0].codigoAseo}`
+    );
 
-     let arraylimpio = allWcs.filter((item)=> item.codigoAseo !== `${datos[0].codigoAseo}` )
- 
-     setRemainMarkers(arraylimpio)     
+    setRemainMarkers(arraylimpio);
 
-setViewport
-     ({
+    setViewport({
       width: "100vw",
       height: "90vh",
       latitude: datos[0].latitud,
       longitude: datos[0].longitud,
       zoom: 13,
     });
-
-
-  }
-  
-
- 
- 
-
-  const openPopup = (index) => {
-    document.getElementById("resultado").style.display = "block";
-    document.getElementById("resultado").innerHTML = `
-
-
-<p> ${index}  </p>
-<p><img src="https://www.seekpng.com/png/detail/199-1996608_star-rating-3-5-stars.png"></p>
-<p>Ahorarr dolore eiusmod apetecan la caidita ...</p>
- 
-
-
-
-`;
   };
 
- 
+  const openPopup = (nombre, latitud, longitud, aseo) => {
+    document.getElementById("resultado").style.display = "block";
+
+    axios.get(`/aseos/raiting/${aseo}`).then((resultado) => {
+      let thumbnail = {
+        nombre,
+        latitud,
+        longitud,
+        aseo,
+        rating: resultado.data.raiting,
+      };
+
+      setGlobalRating(thumbnail);
+    });
+  };
 
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -138,36 +120,75 @@ setViewport
   });
 
   const submitForm = (e) => {
- 
-     console.log(e.target.wc.value)
-    document.getElementById("resultsSearch").innerText = "";
-
     e.preventDefault();
-    let wcToSearch = e.target.wc.value;
+    if(filtrados===[]){
 
-    setSearch(wcToSearch) 
+   
+ 
+  
+  
+      
+      let wcToSearch = e.target.wc.value;
+  
+      setSearch(wcToSearch);
+
+
     }
+    else{
+
+      setFiltrados([])
  
+  
+  
+      
+      let wcToSearch = e.target.wc.value;
+  
+      setSearch(wcToSearch);
+
+
+    }
+
  
+
+  
+  };
+
+  const stars = () => {
+    return (
+      <div className="popUpThumbail">
+        <p>
+          <img src="https://fotografias.antena3.com/clipping/cmsimages02/2020/04/27/EEAB541D-C2A5-4254-A620-5F597E99F93D/58.jpg"></img>
+        </p>
+        <p>{globalRating.nombre}</p>{" "}
+        <a
+          href={`http://www.google.com/maps/place/${globalRating.latitud},${globalRating.longitud}`}
+        >
+          {" "}
+          <img className="ggMaps" src={GoogleIcon}></img>
+        </a>
+        <p>
+          <StarRating totalStars={5} selected={globalRating.rating} />{" "}
+        </p>
+      </div>
+    );
+  };
+  
+
+  console.log(filtrados)
+
   return (
     <div>
       <section className="Home">
-      <div className="search">
-        <form onSubmit={submitForm}>
-        
-          <input
-            type="text"
-            className="input"
-            placeholder="Buscar Wc"
-            name="wc"
-          /*   onChange={wcSearch} */
-          >
-            
-
-            </input>
-            <input type="image" alt="Submit"   src={SearchImg}/> 
-
-        </form>
+        <div className="search">
+          <form onSubmit={submitForm}>
+            <input
+              type="text"
+              className="input"
+              placeholder="Buscar Wc"
+              name="wc"
+            ></input>
+            <input type="image" alt="Submit" src={SearchImg} />
+          </form>
         </div>
         <div id="resultsSearch" className="resultsSearch">
           {search ? paintSearch() : ""}
@@ -178,64 +199,63 @@ setViewport
             {...viewport}
             onViewportChange={(nextViewport) => setViewport(nextViewport)}
           >
-            
-            {markerSelected===[]? console.log("no hay datos") : markerSelected.map((item, i) => (
-    <Marker
-      key={i}
-      latitude={item.latitud}
-      longitude={item.longitud}
-      offsetLeft={-20}
-      offsetTop={-30}
-    >
-      <div
-        className="marker2"
-        tabIndex="0"
-        onFocus={() => openPopup(item.nombre)}
-      ></div>
-    </Marker>
-  )) 
-  
-  
-  }
-  
+            {markerSelected === []
+              ? console.log("no hay datos")
+              : markerSelected.map((item, i) => (
+                  <Marker
+                    key={i}
+                    latitude={item.latitud}
+                    longitude={item.longitud}
+                    offsetLeft={-20}
+                    offsetTop={-30}
+                  >
+                    <div
+                      className="marker2"
+                      tabIndex="0"
+                      onFocus={() =>
+                        openPopup(
+                          item.nombre,
+                          item.latitud,
+                          item.longitud,
+                          item.codigoAseo
+                        )
+                      }
+                    ></div>
+                  </Marker>
+                ))}
 
-            { remainingMarkers? remainingMarkers.map((item, i) => (
-              <Marker
-                key={i}
-                latitude={item.latitud}
-                longitude={item.longitud}
-                offsetLeft={-20}
-                offsetTop={-30}
-              >
-                <div
-                  className="marker"
-                  tabIndex="0"
-                  onFocus={() => openPopup(item.nombre)}
-                ></div>
-              </Marker>
-            )): ""}  
-         
-             {/* {remainingMarkers? remainingMarkers.map((item, i) => (
-              <Marker
-                key={i}
-                latitude={item.latitud}
-                longitude={item.longitud}
-                offsetLeft={-20}
-                offsetTop={-30}
-              >
-                <div
-                  className="marker"
-                  tabIndex="0"
-                  onFocus={() => openPopup(item.nombre)}
-                ></div>
-              </Marker>
-            )): ""}  */}
+            {remainingMarkers
+              ? remainingMarkers.map((item, i) => (
+                  <Marker
+                    key={i}
+                    latitude={item.latitud}
+                    longitude={item.longitud}
+                    offsetLeft={-20}
+                    offsetTop={-30}
+                  >
+                    <div
+                      className="marker"
+                      tabIndex="0"
+                      onFocus={() =>
+                        openPopup(
+                          item.nombre,
+                          item.latitud,
+                          item.longitud,
+                          item.codigoAseo
+                        )
+                      }
+                    ></div>
+                  </Marker>
+                ))
+              : ""}
           </ReactMapGL>
         </div>
       </section>
 
       <div id="resultado" className="popUp">
         {openPopup}
+
+        {globalRating ? stars() : <p></p>}
       </div>
     </div>
   );
