@@ -4,6 +4,8 @@ import useAxiosPost from "../../hooks/useAxiosPost";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import useCookie from "../../hooks/useCookie";
+import { yupResolver } from "@hookform/resolvers/yup";
+import signInValidation from "../../validations/signInValidation";
 
 import "./SignIn.scss";
 
@@ -12,7 +14,6 @@ const SignIn = () => {
 
   useEffect(() => {
     if (cookie) {
-      console.log(cookie);
       if (cookie.data.auth) {
         window.location = "/map";
       }
@@ -26,8 +27,8 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
-  } = useForm();
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(signInValidation) });
 
   const onSubmit = (data, e) => {
     setSingIn(data);
@@ -36,32 +37,19 @@ const SignIn = () => {
 
   return (
     <>
-      <Link to="/home">
+      <Link aria-label="Ir hacia atras" to="/home">
         <BiArrowBack />
       </Link>
       <form className="SignIn" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           Email:
-          <input
-            type="text"
-            name="Username"
-            {...register("email", {
-              required: true,
-              pattern:
-                /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
-            })}
-          />
+          <input type="text" name="Username" {...register("email")} />
+          <p>{errors.email?.message}</p>
         </label>
         <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="Password"
-            {...register("password", {
-              required: true,
-              pattern: /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/,
-            })}
-          />
+          Contraseña:
+          <input type="password" name="Password" {...register("password")} />
+          <p>{errors.password?.message}</p>
         </label>
         <button type="submit">Sign In</button>
       </form>

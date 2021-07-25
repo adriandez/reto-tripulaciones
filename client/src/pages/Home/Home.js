@@ -14,7 +14,6 @@ const Home = () => {
 
   useEffect(() => {
     if (cookie) {
-      console.log(cookie);
       if (cookie.data.auth) {
         window.location = "/map";
       }
