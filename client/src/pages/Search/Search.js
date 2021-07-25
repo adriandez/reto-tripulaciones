@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import MarkerImg from "../../img/marker.png";
 import SearchImg from "../../img/search.png";
 import StarRating from "../../util/Relevance";
-import "./Home.scss";
+import "./Search.scss";
 
 const Home = () => {
   const [wc, setWc] = useState([]);
@@ -197,6 +197,7 @@ const Home = () => {
     );
   };
 
+  console.log(allWcs)
   return (
     <div>
       <section className="Home">
