@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import MarkerImg from "../../img/marker.png";
 import SearchImg from "../../img/search.png";
 import StarRating from "../../util/Relevance";
+import Tutorial from "../../components/Tutorial/Tutorial"
 import "./Search.scss";
 
 const Home = () => {
@@ -197,9 +198,10 @@ const Home = () => {
     );
   };
 
-  console.log(allWcs)
+ 
   return (
     <div>
+      <Tutorial></Tutorial>
       <section className="Home">
         <div className="search">
           <form onSubmit={submitForm}>
