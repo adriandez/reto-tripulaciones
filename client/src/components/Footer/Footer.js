@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="Footer">
  
 
- <Link to="/home"> <img src={mapaMenu}></img></Link>
+ <Link to="/search"> <img src={mapaMenu}></img></Link>
  <Link to="/home"> <img src={resenasMenu}></img></Link>
  <Link to="/home"> <img src={recordatorioMenu}></img></Link>
  <Link to="/home"> <img src={profileMenu}></img></Link>
