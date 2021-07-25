@@ -106,6 +106,7 @@ const Home = () => {
   };
 
   const paintMarker = (aseos) => {
+ 
     axios.get(`/aseos/${aseos}`).then((resultado) => {
       setmarkerSelected([resultado.data]);
       filtrarDatos([resultado.data]);
@@ -133,6 +134,8 @@ const Home = () => {
     setSos(true)
 
     axios.get(`/aseos/raiting/${aseo}`).then((resultado) => {
+
+ 
       let thumbnail = {
         nombre,
         latitud,
@@ -184,20 +187,22 @@ const Home = () => {
         <p>
           <img src="https://fotografias.antena3.com/clipping/cmsimages02/2020/04/27/EEAB541D-C2A5-4254-A620-5F597E99F93D/58.jpg"></img>
         </p>
-        <p>{globalRating.nombre}</p>{" "}
-        <a
-          href={`http://www.google.com/maps/place/${globalRating.latitud},${globalRating.longitud}`}
-        >
-          {" "}
-          <img className="ggMaps" src={GoogleIcon}></img>
-        </a>
+       <p> <Link to={`/details/${globalRating.aseo}`}>{globalRating.nombre}   </Link>  </p>
+    
+   {/*  <p><Link to={`/search/details/`}></Link></p>    */}
+   
+ 
+       
         <p>
           <StarRating totalStars={5} selected={globalRating.rating} />{" "}
         </p>
+
       </div>
     );
   };
 
+ 
+  console.log(globalRating)
  
   return (
     <div>
