@@ -27,7 +27,7 @@
 .popUp {
   display: flex;
   display: none;
-  margin-top: -60%;
+  margin-top: -65%;
   width: 80%;
   height: 20%;
   flex-direction: column;
@@ -131,21 +131,23 @@ img {
   width: 10%;
 }
 .sos{
-  margin-top: -80%;
+  margin-top: -90%;
   margin-left: 5%;
   z-index: 3;
   width: 20%;
-  border-radius: 20px;
+  border-radius: 50%;
+  height: 11%;
   position: absolute;
   background-color: red;
 }
 
 .sos2{
-  margin-top: -30%;
+  margin-top: -40%;
   margin-left: 5%;
   z-index: 3;
   width: 20%;
-  border-radius: 20px;
+  border-radius: 50%;
+  height: 11%;
   position: absolute;
   background-color: red;
 }

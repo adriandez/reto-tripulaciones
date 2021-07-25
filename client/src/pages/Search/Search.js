@@ -202,7 +202,7 @@ const Home = () => {
   };
 
  
-  console.log(globalRating)
+ 
  
   return (
     <div>
@@ -280,7 +280,7 @@ const Home = () => {
           </ReactMapGL>
         </div>
         <div>
-<button id="sos" className="sos">SOS</button>
+<button id="sos"  className="sos"><a href="tel:112">SOS</a></button>
 
         </div>
       </section>
