@@ -11,6 +11,7 @@ const Nav = () => {
         <li className="desktop">
           <Link to="/home">Home</Link>
         </li>
+        
         <li className="desktop">
           <Link to="/signup">SignUp</Link>
         </li>
