@@ -3,6 +3,7 @@ import mapaMenu from  "../../img/mapaMenu.png";
 import profileMenu from  "../../img/profileMenu.png";
 import recordatorioMenu from  "../../img/recordatorioMenu.png";
 import resenasMenu from  "../../img/resenasMenu.png";
+import { Link } from "react-router-dom";
 
 
 
@@ -13,11 +14,11 @@ const Footer = () => {
   return (
     <footer className="Footer">
  
- <img src={mapaMenu}></img>
- <img src={resenasMenu}></img>
 
- <img src={recordatorioMenu}></img>
- <img src={profileMenu}></img>
+ <Link to="/home"> <img src={mapaMenu}></img></Link>
+ <Link to="/home"> <img src={resenasMenu}></img></Link>
+ <Link to="/home"> <img src={recordatorioMenu}></img></Link>
+ <Link to="/home"> <img src={profileMenu}></img></Link>
 
  
       
