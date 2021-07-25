@@ -1,13 +1,35 @@
 .Footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50px;
-  position: bottom;
-  background: rgb(0, 0, 0);
+  
+ 
+ 
+ 
   width: 100%;
+  color: red;
+ 
+ padding-top: 10px;
+ padding-bottom: 5px;
+  bottom: 0px;
+  margin-bottom: 0px;
+  position: sticky;
+  
 }
-
+ 
 $viewport-phone: 300px;
 $viewport-tablet: 564px;
 $viewport-desktop: 960px;
+
+Footer{
+color: white;
+
+}
+img{
+
+ margin-right: 5%;
+ margin-left: 5%;
+  width: 15%;
+}
+
+img:hover{
+
+  border-top: 5px solid #0D5093 ;
+}
