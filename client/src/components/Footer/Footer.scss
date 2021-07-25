@@ -1,7 +1,8 @@
 .Footer {
   
- 
- 
+padding-left: 2%;
+ display: flex;
+ flex-direction: row;
  
   width: 100%;
   color: red;
@@ -26,10 +27,7 @@ color: white;
 
 }
 img{
-
- margin-right: 5%;
- margin-left: 3%;
-  width: 16%;
+ width: 70%;
 }
 
 img:hover{

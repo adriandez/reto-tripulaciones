@@ -100,14 +100,14 @@ const Tutorial = () => {
         <p>cercanos a tu zona </p>
       </div>
       
-      
+      <div className="menuTutoContainer">
       <div id="footer1" className="footer1"></div>
       <div id="footer2" className="footer2"></div>
       <div id="footer2-1" className="footer2-1"></div>
       <div id="footer3" className="footer3"></div>
       <div id="footer3-1" className="footer3-1"></div>
       <div id="footer4" className="footer4"></div>
- 
+    </div>
 
    
  
