@@ -58,8 +58,26 @@ const routes = {
     
     try {
       const response = await aseo.findOne({ where:  req.params });
-     
+    
 
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getByAseoID: async (req, res) => {
+  console.log("99999999999")
+ console.log(req.params)
+ console.log("99999999999")
+
+    
+    try {
+      const response = await aseo.findOne({ where:  req.params });
+     
+      console.log("7777777777")
+
+      console.log(response)
+      console.log("7777777777")
 
       res.status(200).json(response);
     } catch (err) {
@@ -70,9 +88,7 @@ const routes = {
 
     console.log("APUNTAAAAAAAAAAAAAAAAA")
     
-    console.log("**********")
-    console.log(req.params);
-    console.log("**********")
+ 
 
     
     try {
