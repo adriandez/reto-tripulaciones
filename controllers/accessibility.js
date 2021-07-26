@@ -62,6 +62,22 @@ const routes = {
       console.log(err);
     }
   },
+  getByAseoID: async (req, res) => {
+    try {
+      const response = await aseo.findOne({ where: req.params });
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getRatingWc: async (req, res) => {
+    try {
+      const response = await raiting.findOne({ where: req.params });
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   updateRaiting: async (req, res) => {
     console.log(req.body);
     try {

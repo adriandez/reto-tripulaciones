@@ -10,6 +10,8 @@ router.post("/auth/checkToken", routes.checkToken);
 router.post("/user", middleware.verifyRoute, routes.findUser);
 router.get("/aseos", middleware.verifyRoute, routes.getAseos);
 router.get("/aseos/:aseo_ID", routes.getByID);
+router.get("/aseos/details/:codigoAseo", routes.getByAseoID);
+router.get("/aseos/raiting/:codigoAseo", routes.getRatingWc);
 router.put("/aseos/raiting", routes.updateRaiting);
 router.post("/aseos/userRaiting", routes.ceateUserRaiting);
 router.put("/aseos/userRaiting", routes.updateUserRaiting);
