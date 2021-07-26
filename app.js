@@ -1,6 +1,7 @@
 // require express
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 //require .env
 require("dotenv").config();
@@ -13,6 +14,7 @@ const app = express();
 const { sequelize } = require("./utils/database");
 
 // uses para JSON
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

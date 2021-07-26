@@ -1,0 +1,9 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  padding: 8%;
+  >h3{
+      margin-top:5px;
+      margin-bottom:5px;
+  }
+}
