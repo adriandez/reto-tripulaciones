@@ -2,6 +2,8 @@
  * Details css File
 */
 
+@import "../../../Sass/_querys";
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
 .Details {
   /* propertys here */
@@ -12,6 +14,13 @@
   color: #1a5693;
   height: 100%;
   width: 100%;
+  @include desktop{
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+ 
+  
+     }
 }
 .container {
   display: flex;
@@ -20,6 +29,15 @@
 .Details > div > p > img {
   width: 90%;
   margin-left: 5%;
+  @include mobile-landscape {
+    width: 50%;
+    margin-left: 25%;
+  
+     
+ 
+
+
+  }
 }
 .Details > div > p > h2 {
   font-size: 1rem;
@@ -28,6 +46,16 @@
 .Details > div > p > button {
   margin-left: 10%;
   margin-top: 2%;
+  @include mobile-landscape {
+    width: 50%;
+    margin-left: 25%;
+ 
+  
+     
+ 
+
+
+  }
 }
 .back {
   margin-left: 50%;
@@ -49,6 +77,16 @@
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
+  @include mobile-landscape {
+    width: 50%;
+    margin-left: 25%;
+ 
+  
+     
+ 
+
+
+  }
 }
 .okIcon {
   width: 10%;
@@ -102,6 +140,14 @@ tr {
 .open {
   color: green;
   font-size: 0.9rem;
+  @include mobile-landscape {
+    margin-top: 30%;
+  
+     
+ 
+
+
+  }
 }
 .time {
   color: black;

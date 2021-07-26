@@ -186,16 +186,13 @@ const Home = () => {
       <div className="popUpThumbail">
         <p>
           <img src="https://fotografias.antena3.com/clipping/cmsimages02/2020/04/27/EEAB541D-C2A5-4254-A620-5F597E99F93D/58.jpg"></img>
-        </p>
-       <p> <Link to={`/details/${globalRating.aseo}`}>{globalRating.nombre}   </Link>  </p>
+        </p> 
+       <p className="titleWc"> <Link to={`/details/${globalRating.aseo}`}> {globalRating.nombre}  </Link> <div className="ratingStars">  <StarRating  totalStars={5} selected={globalRating.rating} /> </div>  </p>
     
    {/*  <p><Link to={`/search/details/`}></Link></p>    */}
    
  
        
-        <p>
-          <StarRating totalStars={5} selected={globalRating.rating} />{" "}
-        </p>
 
       </div>
     );

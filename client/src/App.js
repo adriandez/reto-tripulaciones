@@ -8,13 +8,14 @@ import "./App.scss";
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
- 
-        <Main />
-        <Footer />
-      </BrowserRouter>
-    </>
+    <div>
+      <div className="AppBody">
+        <BrowserRouter>
+          <Main />
+          <Footer />
+        </BrowserRouter>
+      </div>
+    </div>
   );
 };
 

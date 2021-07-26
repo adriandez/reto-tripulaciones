@@ -1,0 +1,22 @@
+@mixin slide-down {
+  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@mixin slide-right {
+    animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  @mixin slide-right-button {
+    animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+@mixin opacity {
+  -webkit-animation: fadein 0.1s linear 1 normal forwards;
+}
+
+@mixin push{
+
+  animation:rotate-center .6s ease-in-out both
+}
+@mixin slide-bottom{
+
+  animation:slide-bottom .5s cubic-bezier(.25,.46,.45,.94) both
+}

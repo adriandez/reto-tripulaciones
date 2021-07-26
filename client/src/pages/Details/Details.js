@@ -130,7 +130,7 @@ const Details = () => {
     );
   };
 
-  console.log(wcDetails);
+ 
   return (
     <div className="Details">
       <div className="container">

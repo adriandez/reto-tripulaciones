@@ -1,3 +1,4 @@
+@import "../../../Sass/_querys";
 .Footer {
   
 padding-left: 2%;
@@ -16,11 +17,27 @@ padding-left: 2%;
 
   z-index: 4;
   
+  @include desktop{
+    margin-left: 5%;
+     width: 100%;
+      
+   
+   }
+  
+   @include mobile-landscape {
+    width: 50%;
+    margin-left: 23%;
+    border-radius: 20px 20px 0px 0px;
+     
+ 
+
+
+  }
 }
  
-$viewport-phone: 300px;
-$viewport-tablet: 564px;
-$viewport-desktop: 960px;
+ 
+
+
 
 Footer{
 color: white;
@@ -34,3 +51,4 @@ img:hover{
 
   border-top: 5px solid #0D5093 ;
 }
+

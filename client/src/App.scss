@@ -1,9 +1,17 @@
-$viewport-phone: 300px;
-$viewport-tablet: 564px;
-$viewport-desktop: 960px;
+@import "../Sass/_querys";
+
+ 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-.App {
-  min-width: $viewport-phone;
+.AppBody {
+ 
+  @include desktop{
+ 
+    width: 40%;
+    margin: 0 30%;
+   
+
+  }
+ 
 }
 button {
 
@@ -34,7 +42,7 @@ input[type="email"] {
   }
 }
 
-@media screen and (min-width: $viewport-tablet + 1px) and (max-width: $viewport-desktop - 1px) {
+/* @media screen and (min-width: $viewport-tablet + 1px) and (max-width: $viewport-desktop - 1px) {
   input[type="text"],
   input[type="password"],
   input[type="email"] {
@@ -50,8 +58,8 @@ input[type="email"] {
       border: 1px solid rgb(255, 255, 0);
     }
   }
-}
-
+} */
+/* 
 @media screen and (min-width: $viewport-desktop + 1) {
   input[type="text"],
   input[type="password"],
@@ -68,8 +76,10 @@ input[type="email"] {
       border: 1px solid rgb(255, 255, 0);
     }
   }
-}
+} */
 body{
-
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
+  
+  
 }
