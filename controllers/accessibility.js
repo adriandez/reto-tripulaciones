@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.CLIENT_ID);
-
 const mySecret = process.env.SECRET;
 
 
@@ -54,9 +53,16 @@ const routes = {
     }
   },
   getByID: async (req, res) => {
-    console.log(req.params);
     try {
-      const response = await aseo.findOne({ where: req.params });
+      const response = await aseo.findOne({ where:  req.params });
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getRatingWc: async (req, res) => {
+    try {
+      const response = await raiting.findOne({ where:  req.params });
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
@@ -173,7 +179,7 @@ const routes = {
           });
       });
       res.status(200).json({ message: "Thank you for feeding aseos" });
-    } catch (err) {
+    }catch (err){
       console.log(err);
     }
   },
