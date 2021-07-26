@@ -1,29 +1,30 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import GoogleIcon from "../../img/ggmaps.png";
-import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
-import { debounce } from "debounce-react";
+import ReactMapGL, { Marker } from "react-map-gl";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import MarkerImg from "../../img/marker.png";
 import SearchImg from "../../img/search.png";
-import StarRating from "../../util/Relevance";
+import StarRating from "../../utils/Relevance";
 import Tutorial from "../../components/Tutorial/Tutorial"
 import "./Search.scss";
 
 const Home = () => {
+  // eslint-disable-next-line
   const [wc, setWc] = useState([]);
   const [filtrados, setFiltrados] = useState([]);
   const [allWcs, setAllWcs] = useState([]);
   const [search, setSearch] = useState("");
+  // eslint-disable-next-line
   const [listSearch, setListSearch] = useState([]);
   const [markerSelected, setmarkerSelected] = useState([]);
   const [remainingMarkers, setRemainMarkers] = useState([]);
   const [globalRating, setGlobalRating] = useState([]);
   const [showDiv, setShowDiv] = useState(false);
   const [showPopUp, setshowPopUp] = useState(false);
+  // eslint-disable-next-line
   const [info, setInfo] = useState("");
-  const [sos, setSos] = useState(false)
+  const [sos, setSos] = useState(false);
 
   useEffect(() => {
     axios.get("/aseos").then((resultado) => {
@@ -33,42 +34,39 @@ const Home = () => {
 
   useEffect(() => {
     filterSearch();
+    // eslint-disable-next-line
   }, [search]);
 
   useEffect(() => {
-    if (showDiv == false) {
+    if (showDiv === false) {
       document.getElementById("resultsSearch").style.display = "none";
-    } else if (showDiv == true) {
+    } else if (showDiv === true) {
       document.getElementById("resultsSearch").style.display = "block";
     }
   }, [showDiv]);
 
   useEffect(() => {
-    if (sos == false) {
-      document.getElementById("sos").className="sos2";
-    } else if (sos == true) {
-      document.getElementById("sos").className="sos";
+    if (sos === false) {
+      document.getElementById("sos").className = "sos2";
+    } else if (sos === true) {
+      document.getElementById("sos").className = "sos";
     }
   }, [sos]);
 
   useEffect(() => {
-    if (showPopUp == false) {
+    if (showPopUp === false) {
       document.getElementById("resultado").style.display = "none";
-    } else if (showPopUp == true) {
+    } else if (showPopUp === true) {
       document.getElementById("resultado").style.display = "block";
     }
   }, [showPopUp]);
 
   const filterSearch = () => {
     let arraysss = [];
-
     document.getElementById("resultsSearch").innerHTML = "";
-
     for (let wcs of allWcs) {
       let searchlCase = search.toLowerCase();
-
       let nombre = wcs.nombre.toLowerCase();
-
       if (nombre.indexOf(searchlCase) !== -1) {
         arraysss.push(wcs);
         setFiltrados(arraysss);
@@ -76,16 +74,14 @@ const Home = () => {
     }
   };
 
+  // eslint-disable-next-line
   const searchWc = async (e) => {
     e.preventDefault();
-
     let wc = e.target.wc.value;
-
     let obj = {
       name: wc,
     };
     let resultWc = await axios.post("/api/search", obj);
-
     setWc(resultWc.data);
   };
 
@@ -95,7 +91,6 @@ const Home = () => {
         <Link
           onClick={() => {
             paintMarker(item.aseo_ID);
-
             setShowDiv(false);
           }}
         >
@@ -130,8 +125,7 @@ const Home = () => {
 
   const openPopup = (nombre, latitud, longitud, aseo) => {
     setshowPopUp(true);
-    setSos(true)
-
+    setSos(true);
     axios.get(`/aseos/raiting/${aseo}`).then((resultado) => {
       let thumbnail = {
         nombre,
@@ -140,7 +134,6 @@ const Home = () => {
         aseo,
         rating: resultado.data.raiting,
       };
-
       setGlobalRating(thumbnail);
     });
   };
@@ -155,12 +148,11 @@ const Home = () => {
 
   const submitForm = (e) => {
     setshowPopUp(false);
-    setSos(false)
+    setSos(false);
     e.preventDefault();
 
     if (filtrados === []) {
       let wcToSearch = e.target.wc.value;
-
       setSearch(wcToSearch);
       setShowDiv(true);
     } else {
@@ -171,7 +163,6 @@ const Home = () => {
       } else {
         setFiltrados([]);
         setShowDiv(true);
-
         setSearch(wcToSearch);
       }
     }
@@ -182,14 +173,14 @@ const Home = () => {
     return (
       <div className="popUpThumbail">
         <p>
-          <img src="https://fotografias.antena3.com/clipping/cmsimages02/2020/04/27/EEAB541D-C2A5-4254-A620-5F597E99F93D/58.jpg"></img>
+          <img src="https://fotografias.antena3.com/clipping/cmsimages02/2020/04/27/EEAB541D-C2A5-4254-A620-5F597E99F93D/58.jpg" alt="Vista de la planta supeior de un centro comercial donde se pueden ver las dos plantas inferiores a traves de la apertura central"></img>
         </p>
         <p>{globalRating.nombre}</p>{" "}
         <a
           href={`http://www.google.com/maps/place/${globalRating.latitud},${globalRating.longitud}`}
         >
           {" "}
-          <img className="ggMaps" src={GoogleIcon}></img>
+          <img className="ggMaps" src={GoogleIcon} alt="Icono de Google"></img>
         </a>
         <p>
           <StarRating totalStars={5} selected={globalRating.rating} />{" "}
@@ -198,7 +189,6 @@ const Home = () => {
     );
   };
 
- 
   return (
     <div>
       <Tutorial></Tutorial>
@@ -247,7 +237,6 @@ const Home = () => {
                     ></div>
                   </Marker>
                 ))}
-
             {remainingMarkers
               ? remainingMarkers.map((item, i) => (
                   <Marker
@@ -275,8 +264,9 @@ const Home = () => {
           </ReactMapGL>
         </div>
         <div>
-<button id="sos" className="sos">SOS</button>
-
+          <button id="sos" className="sos">
+            SOS
+          </button>
         </div>
       </section>
 

@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Tutorial.scss";
 
 const Tutorial = () => {
   const nextPage = (page) => {
-    console.log(page);
-
-    if (page == 1) {
+    if (page === 1) {
       document.getElementById("tuto1").style.display = "none";
       document.getElementById("tuto2").style.display = "block";
     }
-    if (page == 2) {
+    if (page === 2) {
       document.getElementById("tuto2").style.display = "none";
       document.getElementById("tuto3").style.display = "block";
     }
-    if (page == 3) {
+    if (page === 3) {
       document.getElementById("tuto3").style.display = "none";
       document.getElementById("tutoContainer").style.display = "none";
     }

@@ -29,6 +29,5 @@ const aseo = AseoModel(sequelize, DataTypes);
 const raiting = RaitingModel(sequelize, DataTypes);
 const userRaiting = UserRaitingModel(sequelize, DataTypes);
 
- 
 module.exports = { sequelize, user, aseo, raiting, userRaiting };
- 
+

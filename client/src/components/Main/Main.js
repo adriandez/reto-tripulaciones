@@ -10,10 +10,9 @@ const Main = () => {
   return (
     <main className="Main">
       <Switch>
-   
+        <Route path="/" component={Search} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
-        <Route path="/search" component={Search} />
       </Switch>
     </main>
   );

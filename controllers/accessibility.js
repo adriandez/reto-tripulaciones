@@ -8,13 +8,6 @@ const { raiting } = require("../utils/database");
 const { userRaiting } = require("../utils/database");
 
 const routes = {
-  hello: (req, res) => {
-    try {
-      res.status(200).json({ message: "Say Hello to my little friend" });
-    } catch (err) {
-      console.log(err);
-    }
-  },
   createUser: async (req, res) => {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 11);
@@ -42,10 +35,8 @@ const routes = {
       console.log(err);
     }
   },
- 
   getAseos: async (req, res) => {
     try {
- 
       const response = await aseo.findAll();
       res.status(200).json(response);
     } catch (err) {
@@ -53,33 +44,16 @@ const routes = {
     }
   },
   getByID: async (req, res) => {
-  
-    console.log(req.params);
-    
     try {
       const response = await aseo.findOne({ where:  req.params });
-     
-
-
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
     }
   },
   getRatingWc: async (req, res) => {
-
-    console.log("APUNTAAAAAAAAAAAAAAAAA")
-    
-    console.log("**********")
-    console.log(req.params);
-    console.log("**********")
-
-    
     try {
       const response = await raiting.findOne({ where:  req.params });
-     
-
-
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
@@ -162,20 +136,7 @@ const routes = {
           });
       });
       res.status(200).json({ message: "Thank you for feeding aseos" });
-    }catch{
-
-    }
-  },
- 
-  allWcs: async (req,res) =>{
-    
-    res.status(200).json(aseos);
-
-  },
-  findWc: async (req, res) => {
-    try {
- 
-    } catch (err) {
+    }catch (err){
       console.log(err);
     }
   },
