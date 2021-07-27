@@ -1,0 +1,72 @@
+/*
+ * Assistant css File
+*/
+@import "../../../Sass/colors";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.Assistant {
+  font-family: 'Montserrat', sans-serif;
+    background-color: #e6f3f5;
+}
+.imgContainer{
+    background-color: #e6f3f5;
+    > img {
+        margin-top: 5%;
+        width: 100%;
+    }
+   
+}
+.containerButtons{
+    background-color: #e6f3f5;
+}
+ 
+.containerInfo{
+ 
+    background-color: white;
+    margin-top: -10%;
+    padding: 10%;
+    >p {
+    margin-bottom: 20%;
+    font-size: 1rem;
+    font-weight: bold;
+
+    }
+    > button {
+        
+        margin-left: 5%;
+        width: 90%;
+        font-weight: 400;
+    }
+    > button > img{
+        position: absolute;
+ 
+        margin-left: 18%;
+        justify-content: flex-end;
+        width: 4%;
+    }
+    > h5  {
+        color: $color-primary  ;
+        margin-top: 20%;
+        margin-left: 25%;
+        font-size: 1rem;
+        margin-bottom: 25%;
+    
+        
+
+      }
+      
+      > p:nth-child(5){
+        font-size: 0.8rem;
+        font-weight: 400;
+        
+    }  
+    >h2{
+        font-weight: bold;
+    }
+    
+       
+}
+
+img:hover{
+
+    border: 0px;
+}

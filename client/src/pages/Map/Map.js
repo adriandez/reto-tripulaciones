@@ -59,7 +59,7 @@ const Map = () => {
     <section className="Home">
  
       <Search/>
-      <Footer/>
+ 
  {/*      <Details/>  */}
     </section>
   );
