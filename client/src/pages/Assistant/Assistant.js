@@ -28,10 +28,10 @@ const Assistant = () => {
             nos gustaría conocerte algo mejor
           </p>
           <button>
-            !Sí, claro¡
+            <Link to={"/profileData/"}>!Sí, claro¡</Link>
             <img src={Next} />
           </button>
-          <h5>En otro momento</h5>
+          <h5> <Link to={"/map"}>  En otro momento</Link></h5>
           <p>
             Estos datos no los almacenaremos ni compartiremos con terceros.Son Privados
           </p>

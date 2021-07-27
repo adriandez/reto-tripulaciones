@@ -1,0 +1,128 @@
+/*
+ * ProfileData css File
+*/
+@import "../../../Sass/colors";
+.ProfileData {
+  /* propertys here */
+}
+.containerButtons {
+  background-color: white;
+}
+.formContainer {
+  padding: 5%;
+  margin-top: 10%;
+  margin-bottom: 20%;
+
+  > h5 {
+    font-size: 1rem;
+    font-weight: 200;
+  }
+  > input[name="phone"] {
+    padding-left: 20px;
+    height: 40px;
+    width: 60%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+  }
+  > input[name="kg"] {
+    padding-left: 20px;
+    height: 40px;
+    margin-left: -2%;
+    width: 95%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+
+  }
+  > input[name="cm"] {
+    padding-left: 20px;
+    height: 40px;
+    margin-left: -2%;
+    width: 95%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+
+  }
+  > select {
+    padding-left: 20px;
+    height: 40px;
+    width: 20%;
+    margin-right: 5%;
+    margin-left: 2%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+
+  }
+
+  .containerButtons {
+    background-color: white;
+    width: 100%;
+    margin-bottom: 5%;
+    > button {
+      border-radius: 40px;
+      font-size: 1rem;
+      border: solid 1px $color-primary;
+      padding: 10px;
+      margin-left: 2%;
+      height: 8%;
+      width: 60%;
+      margin-right: 5%;
+      color: $color-primary;
+      background-color: #f6fafe;
+    }
+  }
+}
+
+.inputKg {
+    margin-left: 5%;
+    margin-right: 5%;
+ 
+  width: 90%;
+}
+.blood{
+  
+    margin-bottom: 5%;
+    > button{
+       
+        border: solid 1px black;
+        margin-left: 5%;
+        border-radius: 50%;
+        width: 12%;
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: $color-primary;
+        background-color: white;
+     
+    }
+ 
+}
+
+ input[name="enfermedad"] {
+ 
+    padding-left: 20px;
+    height: 30px;
+    margin-left: -2%;
+    width: 95%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+
+  }
+  input[name="medicamentos"] {
+ 
+    padding-left: 20px;
+    height: 30px;
+    margin-left: -2%;
+    width: 95%;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: #F4F7F8;
+
+  }
+  button[type="submit"]{
+    width: 80%;
+    margin-left: 10%;
+  }

@@ -5,6 +5,8 @@ import SignUp from "../../pages/SignUp";
 import SignIn from "../../pages/SignIn";
 import Map from "../../pages/Map";
 import Details from "../../pages/Details";
+import Assistant from "../../pages/Assistant/Assistant";
+import ProfileData from "../../pages/ProfileData/ProfileData";
 
 import "./Main.scss";
 
@@ -20,6 +22,9 @@ const Main = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/map" component={Map} />
         <Route path="/details/:id" component={Details} />
+        <Route path="/assistant/" component={Assistant} />
+        <Route path="/profileData/" component={ProfileData} />
+   
       </Switch>
     </main>
   );
