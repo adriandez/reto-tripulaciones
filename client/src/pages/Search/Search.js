@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import GoogleIcon from "../../img/ggmaps.png";
 import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
- 
+
 import axios from "axios";
 import { Link } from "react-router-dom";
  
@@ -288,6 +288,7 @@ const Home = () => {
 
         {globalRating ? stars() : <p></p>}
       </div>
+     
     </div>
   );
 };

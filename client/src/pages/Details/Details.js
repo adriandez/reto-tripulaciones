@@ -108,11 +108,11 @@ const Details = () => {
 
             <tr className="locationInfo">
               <td className="iconLocation">
-                {" "}
-                <img src={Clock}></img>{" "}
+           
+                <img src={Clock}></img> 
               </td>
               <td className="hour">
-                <h6 className="open">Abierto - 09:00 a 22:00</h6>{" "}
+                <h6 className="open">Abierto - 09:00 a 22:00</h6> 
               </td>
             </tr>
           </table>
@@ -135,10 +135,10 @@ const Details = () => {
     <div className="Details">
       <div className="container">
         <div className="containerButtons">
-          <Link to={"/search"}>
+          <Link to={"/map"}>
             <img className="back" src={Back}></img>
           </Link>{" "}
-          <Link to={"/search"}>
+          <Link to={"/map"}>
             <img className="close" src={Close}></img>
           </Link>
         </div>
