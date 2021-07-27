@@ -7,7 +7,6 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const mySecret = process.env.SECRET;
 
-
 const { aseos } = require("../models/seeds");
 const { aseo } = require("../utils/database");
 const { raiting } = require("../utils/database");
@@ -193,6 +192,13 @@ const routes = {
       console.log(err);
     }
   },
+  seedCruces: (req, res) => {
+    try {
+      res.status(200).json({ message: "Thank you for feeding cruces" });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   posts: (req, res) => {
     try {
       const decrypt = jwt.verify(req.body.token, mySecret);
@@ -230,7 +236,3 @@ const routes = {
 };
 
 module.exports = routes;
-
-
-
-

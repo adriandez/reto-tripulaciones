@@ -16,5 +16,6 @@ router.put("/aseos/raiting", routes.updateRaiting);
 router.post("/aseos/userRaiting", routes.ceateUserRaiting);
 router.put("/aseos/userRaiting", routes.updateUserRaiting);
 router.post("/seed", routes.seed);
+router.post("/seedCruces", routes.seedCruces);
 
 module.exports = router;

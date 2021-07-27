@@ -4,6 +4,7 @@ const UserModel = require("../models/users");
 const AseoModel = require("../models/aseos");
 const RaitingModel = require("../models/raitings");
 const UserRaitingModel = require("../models/userRaitings");
+const CruceModel = require("../models/cruces");
 
 const sequelize = new Sequelize(
   process.env.MY_SQL_DATABASE,
@@ -17,7 +18,7 @@ const sequelize = new Sequelize(
       max: 5,
       min: 0,
       idle: 20000,
-      acquire: 30000,
+      acquire: 300000,
       evict: 15000,
     },
   }
@@ -27,6 +28,7 @@ const user = UserModel(sequelize, DataTypes);
 const aseo = AseoModel(sequelize, DataTypes);
 const raiting = RaitingModel(sequelize, DataTypes);
 const userRaiting = UserRaitingModel(sequelize, DataTypes);
+const cruce = CruceModel(sequelize, DataTypes);
 
-module.exports = { sequelize, user, aseo, raiting, userRaiting };
+module.exports = { sequelize, user, aseo, raiting, userRaiting, cruce };
 
