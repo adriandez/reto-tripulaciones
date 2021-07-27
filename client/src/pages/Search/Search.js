@@ -66,7 +66,7 @@ const Home = () => {
     setRemainMarkers(arraylimpio);
 
     setViewport({
-      width: "100vw",
+      width: "375px",
       height: "90vh",
       latitude: datos[0].latitud,
       longitude: datos[0].longitud,
@@ -92,43 +92,15 @@ const Home = () => {
   };
 
   const [viewport, setViewport] = useState({
-    width: "100vw",
+    width: "375px",
     height: "90vh",
     latitude: 40.4205026,
     longitude: -3.7254743,
     zoom: 10,
   });
 
-  const submitForm = (e) => {
-    setshowPopUp(false);
-    setSos(false);
-    e.preventDefault();
-
-    if (filtrados === []) {
-      let wcToSearch = e.target.wc.value;
-
-      setSearch(wcToSearch);
-      setShowDiv(true);
-    } else {
-      let wcToSearch = e.target.wc.value;
-      if (search === wcToSearch) {
-        setShowDiv(true);
-        setInfo("el baño que as introducido ya existe");
-      } else {
-        setFiltrados([]);
-        setShowDiv(true);
-
-        setSearch(wcToSearch);
-      }
-    }
-    e.target.reset();
-  };
-
-
-
   return (
-    <section className="Map">
-      <div className="map">
+    <section className="map-container">
         <ReactMapGL
           className="map-container"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
@@ -184,7 +156,6 @@ const Home = () => {
               ))
             : ""}
         </ReactMapGL>
-      </div>
     </section>
   );
 };
