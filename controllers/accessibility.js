@@ -7,7 +7,6 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const mySecret = process.env.SECRET;
 
-
 const { aseos } = require("../models/seeds");
 const { aseo } = require("../utils/database");
 const { raiting } = require("../utils/database");
@@ -211,10 +210,30 @@ const routes = {
     };
     verify().catch(console.error);
   },
+  getByAseoID: async (req, res) => {
+
+    console.log("LE LLEGAAAAAAAAAAAA");
+
+    console.log(req.params)
+    try {
+      const response = await aseo.findOne({ where: req.params });
+
+      
+    console.log(response);
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getRatingWc: async (req, res) => {
+    try {
+      const response = await raiting.findOne({ where: req.params });
+
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = routes;
-
-
-
-

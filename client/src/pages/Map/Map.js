@@ -3,6 +3,13 @@ import useAxiosBearer from "../../hooks/useAxiosBearer";
 import Cookies from "universal-cookie";
 import useAxiosAuthP from "../../hooks/useAxiosAuthP";
 import useAxiosAuthG from "../../hooks/useAxiosAuthG";
+import Search from "../../pages/Search";
+ 
+import Footer from "../../components/Footer";
+import Details from "../../pages/Details";
+
+
+
 
 import "./Map.scss";
 
@@ -50,15 +57,10 @@ const Map = () => {
 
   return (
     <section className="Home">
-      <h3>Mapa</h3>
-      <button onClick={Users}>POST: "/user"</button>
-      {res && res.data ? res.data.name : ""}
-      <button onClick={Aseos}>GET: "/aseos"</button>
-      {resp && resp.data
-        ? `Nombre: ${resp.data[0].nombre} Array.length: ${resp.data.length}`
-        : ""}
-
-      <button onClick={Logout}>LogOut</button>
+ 
+      <Search/>
+      <Footer/>
+      <Details/> 
     </section>
   );
 };

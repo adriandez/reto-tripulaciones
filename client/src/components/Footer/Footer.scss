@@ -1,0 +1,54 @@
+@import "../../../Sass/_querys";
+.Footer {
+  
+padding-left: 2%;
+ display: flex;
+ flex-direction: row;
+ 
+  width: 100%;
+  color: red;
+ 
+ padding-top: 10px;
+ padding-bottom: 5px;
+  bottom: 0px;
+  margin-bottom: 0px;
+  position: fixed;
+  background-color: white;
+
+  z-index: 4;
+  
+  @include desktop{
+    margin-left: 5%;
+     width: 100%;
+      
+   
+   }
+  
+   @include mobile-landscape {
+    width: 50%;
+    margin-left: 23%;
+    border-radius: 20px 20px 0px 0px;
+     
+ 
+
+
+  }
+}
+ 
+ 
+
+
+
+Footer{
+color: white;
+
+}
+img{
+ width: 70%;
+}
+
+img:hover{
+
+  border-top: 5px solid #0D5093 ;
+}
+

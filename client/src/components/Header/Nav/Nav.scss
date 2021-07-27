@@ -1,0 +1,34 @@
+.Nav {
+    color: white;
+    > ul {
+        padding-left: 30px;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        > li {
+            padding: 15px;
+        }
+    }
+    }
+
+span.MuiButton-label {
+    color: white;
+}
+
+.desktop {
+    display: none;
+}
+
+div.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorTop.MuiPaper-elevation16{
+    top: 56px;
+}
+
+body > div.MuiDrawer-root.MuiDrawer-modal > div.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorTop.MuiPaper-elevation16 > div > ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center
+}
