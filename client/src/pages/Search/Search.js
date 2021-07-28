@@ -222,7 +222,7 @@ const Home = () => {
   return (
     <div>
       <Tutorial></Tutorial>
-      <section className="Home">
+      <section className="SearchPage">
         <div className="search">
           <form onSubmit={submitForm}>
             <input

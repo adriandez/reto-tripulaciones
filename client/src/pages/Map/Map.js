@@ -53,10 +53,10 @@ const Map = () => {
   };
 
   return (
-    <section className="Home">
+    <section className="Map">
  
       <Search/>
- 
+    <Footer></Footer>
  
     </section>
   );

@@ -1,3 +1,142 @@
-#root > main > section > a:nth-child(5) > p {
-    color: black;
-}
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.Home {
+    display: flex;
+    flex-direction: column;
+      font-family: 'Comfortaa', cursive;
+ 
+    background-color:  #E6F3F5;
+ 
+  
+font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100vh;  
+    
+    padding-top: 52px;
+     
+    h3{
+      margin-top: 5%;
+      text-align: center;
+      font-size: 1rem;
+ 
+    }
+    .Register{
+ 
+      align-items: center;
+      >h4{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        text-align: center;
+  
+      }
+    }
+   
+    .logIn{
+ margin-left: 10%;
+    width: 80%;
+    }
+    button.google{
+       align-items: center;
+      color: rgba(0, 0, 0, 0.54);
+       padding: 0px;
+      border-radius: 30px;
+      border: 3px black solid;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: Roboto, sans-serif;
+      opacity: 0.6;
+      flex-direction: row;
+      justify-content: center;  
+    }
+    button{
+      width: 100%;
+      align-items: center;
+      margin: 0 auto;
+      flex-direction: column;
+      margin: 6px 12px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid var(--grey);
+      text-align: center;
+      font-size: 17px;
+      background-color: green;
+      color: white;
+      flex-direction: row;
+      justify-content: center; 
+    }
+  }
+  
+  #registro{
+    color: rgb(47, 135, 194);
+    text-decoration:none;
+  }
+  
+  .logoChair {
+
+    width: 100%;
+    
+    > img{
+
+      width: 80%;
+      margin-left: 10%;
+
+
+    }
+
+  }
+  .weTravel{
+  border-radius: 4px;
+  text-align: center;
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    background-color: green;
+ height: 80px;
+ 
+    >h1{
+      font-size: 2rem;
+      font-weight: 500;
+      color : #F7FFF6;
+      font-family: 'Comfortaa', cursive;
+   
+    }
+  }
+  .buttonGoogle{
+    
+    width: 100%;
+    height: 5%;
+    margin-left: -5%;
+    >button {
+      font-size: 1rem;
+      color: black;
+  
+      border: 1px gray solid;
+      border-radius: 20px !important;
+      width: 100% !important;
+      
+
+    }
+    >button >div {
+      padding: 0px !important;
+    }
+    > button >img {
+
+      width: 8%;
+    }
+   > a > button{
+   
+ font-size: 0.8rem;
+ font-weight: 600;
+   }
+  }
+
+  .ocultarButton{
+    background-color: red;
+   
+  }
+ .divGoogle{
+  width: 100%;
+  background-color: red;
+
+ }

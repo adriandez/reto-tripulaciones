@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useCookie from "../../hooks/useCookie";
 import GoogleLogin from "react-google-login";
 import useAxiosPost from "../../hooks/useAxiosPost";
+import LogoChair from "../../img/homeLogo.png"
 
 import "./Home.scss";
 
@@ -31,6 +32,7 @@ const Home = () => {
   const googleLogin = () => {
     return (
       <GoogleLogin
+        
         clientId={process.env.REACT_APP_GG_API}
         buttonText="Acceder con Google"
         onSuccess={responseGoogle}
@@ -46,16 +48,33 @@ const Home = () => {
 
   return (
     <section className="Home">
-      <h3>Logo</h3>
-      <p> Slogan fuga nostrum dolores eligendi alias eos natus voluptatibus!</p>
-      {googleLogin()}
-      <Link to="/signin">
-        <button>Acceder con tu cuenta</button>
-      </Link>
-      <Link to="/signup">
-        <p>¿No tienes cuenta? Regístrate</p>
-      </Link>
-    </section>
+      <div className="weTravel">
+      <h1>WeTravel</h1>
+      </div>
+
+      <div className="logoChair">
+ 
+ <img src={LogoChair}></img>
+
+      </div>
+    <div className="logIn">
+    {/* <h2>Logo</h2> */}
+    <h3> ¡Encuentra baños accesibles y verificados cerca de tu ruta!</h3>
+    <div className="botones">
+    <div className="buttonGoogle">
+    {googleLogin ()}  
+  
+   
+    <Link to="/signin">
+      <button>Acceder con tu email</button>
+    </Link>
+    </div>
+    <div className="Register">
+    <h4 id="cuenta">¿No tienes cuenta?<Link to="/signup" id="registro"> Regístrate</Link></h4>
+    </div>
+    </div>
+    </div>
+  </section>
   );
 };
 

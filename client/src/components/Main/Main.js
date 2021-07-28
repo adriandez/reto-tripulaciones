@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-
+import React ,{useState} from "react";
 import Home from "../../pages/Home"
 import SignUp from "../../pages/SignUp";
 import SignIn from "../../pages/SignIn";
@@ -12,6 +12,9 @@ import Footer from "../../components/Footer"
 import "./Main.scss";
 
 const Main = () => {
+
+ 
+
   return (
     <main className="Main">
       <Switch>
@@ -27,7 +30,8 @@ const Main = () => {
         <Route path="/profileData/" component={ProfileData} />
    
       </Switch>
-      <Footer/>
+  
+      
     </main>
   );
 };
