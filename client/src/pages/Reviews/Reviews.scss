@@ -1,0 +1,81 @@
+/*
+ * Reviews css File
+*/
+
+.Reviews {
+ 
+    /* propertys here */
+/*     background-color: #fafdff; */
+ 
+    height: 100vh;
+}
+.title{
+    
+    text-align: center;
+    padding-top: 15%;
+    padding-bottom: 5%;
+  
+ 
+    color: #0D5093;
+}
+.containerButtonsReviews{
+    width: 85%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    >img{
+        width: 15%;
+    }
+   
+}
+.textButtonsReviews{
+    margin-top: -5%;
+    margin-left: 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.helpInfo{
+    padding: 3%;
+    font-size: 0.9rem;
+    margin-left: 22%;
+    width: 50%;
+    margin-right: 22%;
+    height: 150px;
+    
+    background-color: #F4F7F8;
+    >img{
+        width: 20%;
+    }
+}
+h4 {
+    padding-left: 5%;
+    color: black;
+}
+h6{
+    font-size: 0.9rem;
+    padding-left: 5%;
+    margin-bottom: 5%;
+
+}
+.stars{
+    margin-top: -20%;
+    padding-left: 5%;
+    width: 35%;
+}
+.containerReviews{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F7F8;
+    width: 80%;
+    margin-left: 10%;
+    height: 20%;
+    text-align: center;
+    padding-top: 25%;
+    color: #0D5093;
+    font-weight: 600;
+}

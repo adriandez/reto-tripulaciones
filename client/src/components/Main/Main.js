@@ -10,7 +10,8 @@ import ProfileData from "../../pages/ProfileData/ProfileData";
 import Footer from "../../components/Footer"
 import Profile from "../../pages/Profile/Profile";
 import MedicalData from "../../pages/MedicalData/MedicalData";
-
+import Reviews from "../../pages/Reviews/Reviews";
+import Alarm from "../../pages/Alarm/Alarm";
 import "./Main.scss";
 
 const Main = () => {
@@ -32,6 +33,9 @@ const Main = () => {
         <Route path="/profileData/" component={ProfileData} />
         <Route path="/myprofile/" component={Profile} />
         <Route path="/medicaldata/" component={MedicalData} />
+        <Route path="/reviews/" component={Reviews} />
+        <Route path="/alarm/" component={Alarm} />
+
 
    
       </Switch>

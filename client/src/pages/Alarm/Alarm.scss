@@ -1,0 +1,43 @@
+/*
+ * Alarm css File
+*/
+
+.Alarm {
+    /* propertys here */
+ background-color: #FAFDFF;
+ height: 100vh;
+    h1{
+        text-align: center;
+ 
+        margin-bottom: 20%;
+        
+        color: #0D5093;
+        
+    }
+}
+
+
+.separator{
+
+    width: 100%;
+       border-top: 1px solid #A0A0A0;
+     
+     
+       
+   
+   }
+
+
+.setClock{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+ >h2{
+     font-size: 2rem;
+     padding-left: 10%;
+ }
+}
+.switchIos{
+
+    margin-top: 5%;
+}
