@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+#root > main > a {
+  color:black;
+}
+
 .alertMessage{
 
   margin-top: 10%;
