@@ -14,7 +14,7 @@ router.put("/aseos/raiting", middleware.verifyRoute, routes.updateRaiting);
 router.post("/aseos/userRaiting", routes.ceateUserRaiting);
 router.put("/aseos/userRaiting", routes.updateUserRaiting);
 router.put("/user/update", middleware.verifyRoute, routes.updateUser);
-router.put("/tutorial", middleware.verifyRoute, routes.updateTutorial);
+router.put("/tutorials", middleware.verifyRouteUser, routes.updateTutorial);
 router.post("/seed", routes.seed);
 
 router.get("/aseos/details/:codigoAseo", routes.getByAseoID);

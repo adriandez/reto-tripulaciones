@@ -20,13 +20,7 @@ const Logout = () => {
 const Map = () => {
   const [header, setHeader] = useState();
   const response = useAxiosBearer(header);
-  const [random, setRandom] = useState();
-  const [route, setRoute] = useState();
-  const [cookie, setCookie] = useState();
-  const [cookie2, setCookie2] = useState();
-  const [data, setData] = useState();
-  const res = useAxiosAuthP(route, data, cookie);
-  const resp = useAxiosAuthG(cookie2);
+  const [tutorialBoolean, setTutorialBoolean] = useState();
 
   useEffect(() => {
     let checkingCookie = cookies.get("reto");
@@ -34,30 +28,14 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    if (response && response.data !== "success") window.location = "/home";
+    if (response && response.data)
+      setTutorialBoolean(response.data.tutorial);
+    if (response && response.tutorial) window.location = "/home";
   }, [response]);
-
-  useEffect(() => {
-    const test = Math.floor(Math.random() * 10);
-    setRandom(test);
-  }, [res]);
-
-  const Users = () => {
-    setCookie(cookies.get("reto"));
-    setData({ user_ID: random });
-    setRoute("/user");
-  };
-
-  const Aseos = () => {
-    setCookie2(cookies.get("reto"));
-  };
 
   return (
     <section className="Home">
- 
-      <Search/>
- 
- 
+      <Search tutorialBoolean={tutorialBoolean} />
     </section>
   );
 };

@@ -14,7 +14,9 @@ const SignIn = () => {
 
   useEffect(() => {
     if (cookie) {
-      if (cookie.data.auth) {
+      if (cookie.data.tutorial) {
+        window.location = "/assistant";
+      } else {
         window.location = "/map";
       }
     }

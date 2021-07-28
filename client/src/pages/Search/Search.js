@@ -15,7 +15,7 @@ import "./Search.scss";
 
 const cookies = new Cookies();
 
-const Home = () => {
+const Home = (tutorialBoolean) => {
   const [wc, setWc] = useState([]);
   const [filtrados, setFiltrados] = useState([]);
   const [allWcs, setAllWcs] = useState([]);
@@ -30,7 +30,6 @@ const Home = () => {
   const [sos, setSos] = useState(false);
   const [token, setToken] = useState();
 
-  
   useEffect(() => {
     let checkingCookie = cookies.get("reto");
     setToken(checkingCookie);
@@ -216,12 +215,9 @@ const Home = () => {
     );
   };
 
- 
- 
- 
   return (
     <div>
-      <Tutorial></Tutorial>
+      {tutorialBoolean.tutorialBoolean ? <Tutorial /> : ""}
       <section className="Home">
         <div className="search">
           <form onSubmit={submitForm}>
@@ -295,17 +291,16 @@ const Home = () => {
           </ReactMapGL>
         </div>
         <div>
-<button id="sos"  className="sos"><a href="tel:112">SOS</a></button>
-
+          <button id="sos" className="sos">
+            <a href="tel:112">SOS</a>
+          </button>
         </div>
       </section>
-
       <div id="resultado" className="popUp">
         {openPopup}
 
         {globalRating ? stars() : <p></p>}
       </div>
-     
     </div>
   );
 };

@@ -123,12 +123,14 @@ const routes = {
       const dbRes = await user.findOne({ where: { email: email } });
       let user_ID = dbRes.dataValues.user_ID;
       let nameUser = dbRes.dataValues.name;
+      let tutorialD = dbRes.dataValues.tutorial;
       let passUserDatabase = dbRes.dataValues.password;
       const isMatch = await bcrypt.compare(password, passUserDatabase);
       if (dbRes !== null && isMatch) {
         const payload = {
           user_ID: user_ID,
           name: nameUser,
+          tutorial: tutorialD,
           auth: true,
           google: false,
         };
@@ -181,10 +183,11 @@ const routes = {
       console.log(err);
     }
   },
-  posts: (req, res) => {
+  posts: async (req, res) => {
     try {
       const decrypt = jwt.verify(req.body.token, mySecret);
-      if (decrypt.auth) res.send("success");
+      const resp = await user.findOne({ where: { user_ID: decrypt.user_ID } });
+      res.status(200).json({ tutorial: resp.tutorial });
     } catch (err) {
       console.log(err);
       res.sendStatus(403);
@@ -239,12 +242,11 @@ const routes = {
   },
   updateTutorial: async (req, res) => {
     try {
-      console.log("update tutorial");
       const response = await user.update(
         {
           tutorial: false,
         },
-        { where: req.params }
+        { where: { user_ID: req.body.user_ID } }
       );
 
       res.status(200).json(response);
@@ -254,14 +256,13 @@ const routes = {
   },
   updateUser: async (req, res) => {
     try {
-      console.log("update user");
       const response = await user.update(req.body, { where: req.params });
 
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
     }
-  }
+  },
 };
 
 module.exports = routes;
