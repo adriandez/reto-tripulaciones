@@ -8,6 +8,7 @@ import Details from "../../pages/Details";
 import Assistant from "../../pages/Assistant/Assistant";
 import ProfileData from "../../pages/ProfileData/ProfileData";
 import Footer from "../../components/Footer"
+import Profile from "../../pages/Profile/Profile";
 
 import "./Main.scss";
 
@@ -28,6 +29,7 @@ const Main = () => {
         <Route path="/details/:id" component={Details} />
         <Route path="/assistant/" component={Assistant} />
         <Route path="/profileData/" component={ProfileData} />
+        <Route path="/myprofile/" component={Profile} />
    
       </Switch>
   
