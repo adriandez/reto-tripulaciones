@@ -34,8 +34,10 @@ const Map = () => {
   }, [response]);
 
   return (
-    <section className="Home">
-      <Search tutorialBoolean={tutorialBoolean} />
+
+    <section className="Map">
+    <Search tutorialBoolean={tutorialBoolean} />
+    <Footer />
     </section>
   );
 };

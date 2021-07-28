@@ -218,7 +218,7 @@ const Home = (tutorialBoolean) => {
   return (
     <div>
       {tutorialBoolean.tutorialBoolean ? <Tutorial /> : ""}
-      <section className="Home">
+      <section className="SearchPage">
         <div className="search">
           <form onSubmit={submitForm}>
             <input

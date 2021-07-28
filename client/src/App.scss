@@ -22,6 +22,9 @@ button {
   color: white;
   border-radius: 20px;
   border: 0px;
+  font-family: 'Montserrat', sans-serif;
+ 
+  
 }
 
 input[type="text"],
@@ -42,41 +45,7 @@ input[type="email"] {
   }
 }
 
-/* @media screen and (min-width: $viewport-tablet + 1px) and (max-width: $viewport-desktop - 1px) {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"] {
-    width: 97%;
-    background: white;
-    padding: 6px;
-    color: black;
-    &::placeholder {
-      color: black;
-    }
-    &:focus {
-      outline: none !important;
-      border: 1px solid rgb(255, 255, 0);
-    }
-  }
-} */
-/* 
-@media screen and (min-width: $viewport-desktop + 1) {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"] {
-    width: 99%;
-    background: white;
-    padding: 6px;
-    color: black;
-    &::placeholder {
-      color: black;
-    }
-    &:focus {
-      outline: none !important;
-      border: 1px solid rgb(255, 255, 0);
-    }
-  }
-} */
+ 
 body{
   margin: 0;
   font-family: 'Montserrat', sans-serif;
