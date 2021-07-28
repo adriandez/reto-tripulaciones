@@ -5,14 +5,18 @@
 .ProfileData {
   /* propertys here */
 }
-.containerButtons {
-  background-color: white;
+.containerButtonsPD {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: -10%;
 }
 .formContainer {
   padding: 5%;
   margin-top: 10%;
   margin-bottom: 20%;
-
+   
   > h5 {
     font-size: 1rem;
     font-weight: 200;
@@ -68,7 +72,7 @@
       padding: 10px;
       margin-left: 2%;
       height: 8%;
-      width: 60%;
+      width: 40%;
       margin-right: 5%;
       color: $color-primary;
       background-color: #f6fafe;

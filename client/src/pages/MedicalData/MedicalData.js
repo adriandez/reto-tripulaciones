@@ -2,6 +2,7 @@ import React from "react";
 import "./MedicalData.scss";
 import Back from "../../img/back.png";
 import Close from "../../img/close.png";
+import Footer from "../../components/Footer";
 
 import Next from "../../img/next.png";
 import { useParams, Link } from "react-router-dom";
@@ -10,7 +11,7 @@ const MedicalData = () => {
     <div className="MedicalData">
       <div className="container"></div>
       <div className="headerContainer">
-        <div className="containerButtons">
+        <div className="containerButtonsMD">
           <Link to={"/map"}>
             <img className="back" src={Back}></img>
           </Link>{" "}
@@ -37,6 +38,7 @@ const MedicalData = () => {
       
         
       </div>
+      <Footer></Footer>
     </div>
   );
 };

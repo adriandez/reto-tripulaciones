@@ -48,7 +48,7 @@ const SignUp = () => {
       <Link aria-label="Ir hacia atras" to="/home">
         <BiArrowBack />
       </Link>
-      <div className="containerButtons">
+      <div className="containerButtonsSU">
           <Link to={"/map"}>
             <img className="back" src={Back}></img>
           </Link>{" "}

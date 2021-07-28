@@ -11,6 +11,7 @@ import Close from "../../img/close.png";
 import Avatar from "../../img/avatar.png"
 import Next from "../../img/nextBlack.png";
 import Cookies from "universal-cookie";
+import Footer  from "../../components/Footer";
 import "./Profile.scss";
 const cookies = new Cookies();
 
@@ -60,6 +61,7 @@ const SignUp = () => {
       <div className="logUpForm">
         <h4 onClick={logout}>Cerrar sesión</h4>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

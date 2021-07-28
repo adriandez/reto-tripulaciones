@@ -15,12 +15,15 @@
     }
    
 }
-.containerButtons{
+.containerButtonsAssistant{
     
- 
-    background-color: #e6f3f5;
- 
-}
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: -10%;
+    background-color: #F6FAFE;
+  }
  
 .containerInfo{
  

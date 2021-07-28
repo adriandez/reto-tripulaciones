@@ -32,7 +32,7 @@ useEffect(() => {
   return (
     <div className="container">
       <div className="Assistant">
-        <div className="containerButtons">
+        <div className="containerButtonsAssistant">
           <Link to={"/map"}>
             <img className="back" src={Back}></img>
           </Link>{" "}

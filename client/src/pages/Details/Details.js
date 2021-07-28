@@ -10,6 +10,7 @@ import Ok from "../../img/ok.png";
 import axios from "axios";
 import "./Details.scss";
 
+import Footer from "../../components/Footer"
 const Details = () => {
   const [wcDetails, setwcDetails] = useState([]);
   const [showDiv, setShowDiv] = useState(false)
@@ -56,7 +57,7 @@ const Details = () => {
  
   const containerInfo = () => {
     return (
-      <div className="containerInfo">
+      <div className="containerInfoDetails">
         <table >
           <tr  >
             <td>
@@ -132,9 +133,10 @@ const Details = () => {
 
  
   return (
+    <div>
     <div className="Details">
       <div className="container">
-        <div className="containerButtons">
+        <div className="containerButtonsDetails">
           <Link to={"/map"}>
             <img className="back" src={Back}></img>
           </Link>{" "}
@@ -147,6 +149,9 @@ const Details = () => {
         {info()}
         {containerInfo()}
       </div>
+     
+    </div>
+    <Footer></Footer>
     </div>
   );
 };

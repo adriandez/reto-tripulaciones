@@ -136,3 +136,19 @@ button[type="submit"]{
 
   margin-top: 8%;
 }
+.containerButtonsSU{
+    
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: -10%;
+  background-color: white;
+}
+ 
+
+.logUpForm > form > label > p{
+  color: red;
+  font-size: 0.8rem;
+ text-align: center;
+}

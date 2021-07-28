@@ -73,7 +73,7 @@ const ProfileData = () => {
   return (
     <div className="containerProfileData">
      
-      <div className="containerButtons">
+      <div className="containerButtonsPD">
         <Link to={"/assistant"}>
           <img className="back" src={Back}></img>
         </Link>{" "}
