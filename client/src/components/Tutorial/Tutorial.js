@@ -25,7 +25,9 @@ const Tutorial = () => {
   }, [tutorial,token]);
 
   const nextPage = (page) => {
+   
     if (page === 1) {
+      alert("entra1")
       document.getElementById("tuto1").style.display = "none";
       document.getElementById("tuto2").style.display = "block";
       document.getElementById("footer1").style.display = "none";
