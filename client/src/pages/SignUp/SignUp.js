@@ -6,6 +6,10 @@ import { BiArrowBack } from "react-icons/bi";
 import useCookie from "../../hooks/useCookie";
 import { yupResolver } from "@hookform/resolvers/yup";
 import signUpValidation from "../../validations/signUpValidation"
+import Back from "../../img/back.png";
+import Close from "../../img/close.png";
+import Avatar from "../../img/avatar.png"
+import Eye from  "../../img/eye.png"
 
 import "./SignUp.scss";
 
@@ -39,34 +43,57 @@ const SignUp = () => {
   };
 
   return (
-    <>
+    <div className="SingUpContainer">
+   
       <Link aria-label="Ir hacia atras" to="/home">
         <BiArrowBack />
       </Link>
-      <form className="SignUp" onSubmit={handleSubmit(onSubmit)}>
+      <div className="containerButtons">
+          <Link to={"/map"}>
+            <img className="back" src={Back}></img>
+          </Link>{" "}
+          <Link to={"/map"}>
+            <img className="close" src={Close}></img>
+          </Link>
+        </div>
+      <div className="avatar">
+<img src={Avatar}></img>
+<h6>Sube tu foto de perfil</h6>
+      </div>
+   
+      <div className="logUpForm">
+     
+      <form   onSubmit={handleSubmit(onSubmit)}>
         <label>
-          Nombre:
-          <input type="text" name="name" {...register("name")} />
+       
+          <input type="text" placeholder="Nombre y apellidos*" name="name" {...register("name")} />
           <p>{errors.name?.message}</p>
         </label>
         <label>
-          Email:
-          <input type="email" name="email" {...register("email")} />
+     
+          <input type="email"  placeholder="Email" name="email" {...register("email")} />
           <p>{errors.email?.message}</p>
         </label>
         <label>
-          Contraseña:
-          <input type="password" name="password" {...register("password")} />
+        <img className="eye" src={Eye}></img>
+          <input type="password"  placeholder="Contraseña" name="password" {...register("password")} />
           <p>{errors.password?.message}</p>
         </label>
         <label>
-          Confirma la contraseña:
-          <input type="password" name="password2" {...register("password2")} />
+        <img className="eye" src={Eye}></img>
+          <input type="password" placeholder="Repetir contraseña" name="password2" {...register("password2")} />
           <p>{errors.password2?.message}</p>
         </label>
-        <button type="submit">Sign Up</button>
+        <div className="checkbox">
+        <input type="checkbox"/>He leído y acepto los términos y condiciones 
+        <br></br>
+        <input type="checkbox"/>Acepto recibir emails con promociones
+        </div>
+
+        <button type="submit">Acceder</button>
       </form>
-    </>
+      </div>
+    </div>
   );
 };
 

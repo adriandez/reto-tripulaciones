@@ -1,4 +1,138 @@
-.SignUp {
+.SingUpContainer {
   display: flex;
   flex-direction: column;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+ 
+
+#root > main > a {
+  color:black;
+}
+
+.alertMessage{
+
+  margin-top: 10%;
+  font-weight: bold;
+  color: red;
+  font-size: 1rem;
+}
+.logUpForm{
+  border-radius: 30px 30px  0px 0px;
+  display: flex;
+  flex-direction: column;
+ 
+ 
+  background-color: white;
+ 
+  width: 100%;
+  height: 60%;
+  >form > label > h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 8%;
+    font-weight: 600;
+   
+  }
+  >form > label >  input {
+    padding-left: 10%;
+    border-radius: 20px;
+    height: 30px;
+    
+    border: solid 1px  #a5a5a5;
+    color: #a5a5a5;
+    width: 70%;
+    margin-left: 8%;
+  
+   
+  }
+  >form > label >  input:hover {
+   
+    border: solid 1px  #a5a5a5;
+ 
+   
+  
+   
+  }
+
+   
+  > form > h5{
+    text-align: center;
+    color: #1982EB;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -3%;
+    margin-bottom: 10%;
+    
+
+  }
+  > form > button{
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    
+  }
+  
+}
+
+ 
+.icons{
+  width: 4%;
+  margin-left: 12%;
+  margin-top: 4%;
+  position: absolute;
+}
+
+ 
+ 
+ 
+::placeholder {
+
+
+  color: red;
+}
+.avatar{
+  display: flex;
+  margin-top: 10%;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -25%;
+  height: 300px;
+  >img {
+
+    width: 30%;
+
+  }
+  >h6 {
+
+    color: #6A6469;
+    font-size: 0.8rem;
+  }
+}
+.checkbox{
+ 
+    width: 80%;
+    margin-left: 10%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+ 
+ >input{
+ 
+   margin: 4%;
+ }
+ 
+
+
+}
+.eye{
+  width: 5%;
+  position: absolute;
+  margin-left: 80%;
+  margin-top: 4%;
+}
+button[type="submit"]{
+
+  margin-top: 8%;
 }
