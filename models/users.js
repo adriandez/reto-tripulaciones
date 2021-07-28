@@ -24,8 +24,36 @@ module.exports = (sequelize, DataTypes) => {
     },
     tutorial: {
       type: DataTypes.BOOLEAN,
-      default:true,
-      allowNull: false
+      default: true,
+      allowNull: false,
+    },
+    blood: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    cm: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    enfermedad: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    kg: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    medical: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    phone: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    support: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   });
   return user;

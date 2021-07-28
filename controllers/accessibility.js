@@ -239,15 +239,29 @@ const routes = {
   },
   updateTutorial: async (req, res) => {
     try {
-      const response = await user.update({
-            tutorial: false,
-          },{ where: req.params });
+      console.log("update tutorial");
+      const response = await user.update(
+        {
+          tutorial: false,
+        },
+        { where: req.params }
+      );
 
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
     }
   },
+  updateUser: async (req, res) => {
+    try {
+      console.log("update user");
+      const response = await user.update(req.body, { where: req.params });
+
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };
 
 module.exports = routes;
