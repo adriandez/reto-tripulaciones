@@ -4,7 +4,7 @@ import "./Tutorial.scss";
 
 const Tutorial = () => {
   const nextPage = (page) => {
-    console.log(page);
+   
 
     if (page == 1) {
    

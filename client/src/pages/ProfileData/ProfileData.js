@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import Back from "../../img/back.png";
 import Close from "../../img/close.png";
 import "./ProfileData.scss";
@@ -13,8 +13,13 @@ const ProfileData = () => {
   const [blood, setBlood] = useState("");
   const [enfermedad, setEnfermedad] = useState("");
   const [medical, setMedical] = useState("");
+  const [data, setData] = useState([""]);
+
+ useEffect(() => {
 
  
+   
+ }, [data])
 
   const apoyo = (data) => {
     setSupport(data);
@@ -24,6 +29,33 @@ const ProfileData = () => {
   };
 
   const submitData = () => {
+
+   if(phone==""){
+ alert("introduce un número de teléfono")
+   }
+
+   else if(kg==""){
+    alert("introduce un peso")
+   }
+  else if(cm==""){
+    alert("introduce un peso")
+   }
+   else if(blood==""){
+     
+    alert("introduce grupo sanguíneo")
+  }
+  else if(enfermedad==""){
+     
+   
+  }
+  else if(medical==""){
+     
+  }
+
+
+
+
+
     let obj = {
       support,
       phone,
@@ -33,10 +65,14 @@ const ProfileData = () => {
       enfermedad,
       medical,
     };
+    setData(obj)
+
   };
 
+ 
   return (
     <div className="containerProfileData">
+     
       <div className="containerButtons">
         <Link to={"/assistant"}>
           <img className="back" src={Back}></img>
@@ -75,15 +111,23 @@ const ProfileData = () => {
           type="number"
           name="kg"
           onChange={(event) => setKg(event.target.value)}
-          placeholder="kg"
-        ></input>
+         
+        >
+
+
+          
+        </input>
         <h5>¿Cuánto mides?</h5>
         <input
           type="number"
           name="cm"
           onChange={(event) => setCm(event.target.value)}
           placeholder="cm"
-        ></input>
+        >
+
+ 
+
+        </input>
         <h5>¿Cuál es tu grupo sanguíneo?</h5>
 
         <div className="blood">
@@ -142,6 +186,7 @@ const ProfileData = () => {
           Terminar
         </button>
       </div>
+      <div className="message"></div>
     </div>
   );
 };
