@@ -10,10 +10,11 @@ import Back from "../../img/back.png";
 import Close from "../../img/close.png";
 import Avatar from "../../img/avatar.png"
 import Next from "../../img/nextBlack.png";
-
- 
-
+import Cookies from "universal-cookie";
 import "./Profile.scss";
+const cookies = new Cookies();
+
+
 
 const SignUp = () => {
   const cookie = useCookie();
@@ -26,6 +27,10 @@ const SignUp = () => {
     }
   }, [cookie]);
 
+  const logout = () =>{
+    cookies.remove("reto")
+    window.location = "/home";
+  }
   
   return (
     <div className="SingUpContainer">
@@ -34,7 +39,7 @@ const SignUp = () => {
  
       <div className="avatar">
 <img src={Avatar}></img>
-<h4>Sube tu foto de perfil</h4>
+<h4>Yuri Ramírez</h4>
       </div>
       <div className="containerButtonsProfile"
 >     <button>
@@ -43,7 +48,7 @@ const SignUp = () => {
           </button>
           <br/>
           <button>
-            <Link to={"/profileData/"}>Datos médicos</Link>
+            <Link to={"/medicaldata/"}>Datos médicos</Link>
             <img src={Next} />
           </button>
           <br/>
@@ -53,7 +58,7 @@ const SignUp = () => {
           </button>
           </div> 
       <div className="logUpForm">
-        <h4>Cerrar sesión</h4>
+        <h4 onClick={logout}>Cerrar sesión</h4>
       </div>
     </div>
   );

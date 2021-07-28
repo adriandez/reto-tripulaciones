@@ -1,0 +1,59 @@
+/*
+ * MedicalData css File
+*/
+
+.MedicalData {
+ 
+    height: 100vh;
+/*     background-color: #F6FAFE;  */
+background-color: #F6FAFE;
+ 
+   
+}
+
+.separator{
+
+ width: 100%;
+    border-top: 1px solid #A0A0A0;
+  
+  
+    
+
+}
+.containerButtons{
+ 
+    background-color: #F6FAFE;
+
+margin-bottom: -20%;
+}
+ 
+.container{
+
+}
+.headerContainer{
+    background-color: green;
+    margin-bottom: 30%;
+    > div{
+        color: #0D5093;
+        font-weight: bolder;
+
+    }
+}
+
+ 
+
+p >h4 {
+    margin-left: 5%;
+    color: #0D5093;
+}
+ p >h5{
+     font-size: 1rem;
+
+     margin-left: 5%;
+ }
+
+ h4{
+
+    color: #0D5093;
+ }
+ 

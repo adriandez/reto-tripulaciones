@@ -9,6 +9,7 @@ import Assistant from "../../pages/Assistant/Assistant";
 import ProfileData from "../../pages/ProfileData/ProfileData";
 import Footer from "../../components/Footer"
 import Profile from "../../pages/Profile/Profile";
+import MedicalData from "../../pages/MedicalData/MedicalData";
 
 import "./Main.scss";
 
@@ -30,9 +31,11 @@ const Main = () => {
         <Route path="/assistant/" component={Assistant} />
         <Route path="/profileData/" component={ProfileData} />
         <Route path="/myprofile/" component={Profile} />
+        <Route path="/medicaldata/" component={MedicalData} />
+
    
       </Switch>
-  
+      
       
     </main>
   );
