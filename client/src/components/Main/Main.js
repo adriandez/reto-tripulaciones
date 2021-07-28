@@ -7,6 +7,7 @@ import Map from "../../pages/Map";
 import Details from "../../pages/Details";
 import Assistant from "../../pages/Assistant/Assistant";
 import ProfileData from "../../pages/ProfileData/ProfileData";
+import Logout from "../../pages/Logout";
 
 import "./Main.scss";
 
@@ -20,11 +21,11 @@ const Main = () => {
         <Route path="/home" component={Home} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
+        <Route path="/logout" component={Logout} />
         <Route path="/map" component={Map} />
         <Route path="/details/:id" component={Details} />
         <Route path="/assistant/" component={Assistant} />
         <Route path="/profileData/" component={ProfileData} />
-   
       </Switch>
     </main>
   );
