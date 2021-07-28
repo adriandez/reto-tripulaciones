@@ -18,7 +18,7 @@ const Footer = () => {
 
  <Link to="/map"> <img src={mapaMenu}></img></Link>
  <Link to="/reviews"> <img src={resenasMenu}></img></Link>
- <Link to="/home"> <img src={recordatorioMenu}></img></Link>
+ <Link to="/alarm"> <img src={recordatorioMenu}></img></Link>
  <Link to="/myprofile"> <img src={profileMenu}></img></Link>
 
  
