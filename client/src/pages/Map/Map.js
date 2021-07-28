@@ -60,7 +60,7 @@ const Map = () => {
  
       <Search/>
  
- {/*      <Details/>  */}
+ 
     </section>
   );
 };

@@ -39,7 +39,7 @@ const formData = (e) =>{
     <div className="containerProfileData">
      
           <div className="containerButtons">
-          <Link to={"/map"}>
+          <Link to={"/assistant"}>
             <img className="back" src={Back}></img>
           </Link>{" "}
           <Link to={"/map"}>
