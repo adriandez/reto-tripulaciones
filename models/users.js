@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
       allowNull: false,
     },
+    tutorial: {
+      type: DataTypes.BOOLEAN,
+      default:true,
+      allowNull: false
+    },
   });
   return user;
 };

@@ -7,6 +7,7 @@ import Map from "../../pages/Map";
 import Details from "../../pages/Details";
 import Assistant from "../../pages/Assistant/Assistant";
 import ProfileData from "../../pages/ProfileData/ProfileData";
+import Footer from "../../components/Footer"
 
 import "./Main.scss";
 
@@ -26,6 +27,7 @@ const Main = () => {
         <Route path="/profileData/" component={ProfileData} />
    
       </Switch>
+      <Footer/>
     </main>
   );
 };

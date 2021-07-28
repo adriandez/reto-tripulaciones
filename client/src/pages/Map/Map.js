@@ -4,12 +4,9 @@ import Cookies from "universal-cookie";
 import useAxiosAuthP from "../../hooks/useAxiosAuthP";
 import useAxiosAuthG from "../../hooks/useAxiosAuthG";
 import Search from "../../pages/Search";
- 
+
 import Footer from "../../components/Footer";
 import Details from "../../pages/Details";
-
-
-
 
 import "./Map.scss";
 
@@ -21,20 +18,20 @@ const Logout = () => {
 };
 
 const Map = () => {
-  const [ header, setHeader ] = useState();
+  const [header, setHeader] = useState();
   const response = useAxiosBearer(header);
-  const [ random, setRandom ] = useState();
-  const [ route, setRoute ] = useState();
+  const [random, setRandom] = useState();
+  const [route, setRoute] = useState();
   const [cookie, setCookie] = useState();
   const [cookie2, setCookie2] = useState();
-    const [data, setData] = useState();
+  const [data, setData] = useState();
   const res = useAxiosAuthP(route, data, cookie);
   const resp = useAxiosAuthG(cookie2);
 
-    useEffect(() => {
-      let checkingCookie = cookies.get("reto");
-      checkingCookie ? setHeader(checkingCookie) : (window.location = "/home");
-    }, []);
+  useEffect(() => {
+    let checkingCookie = cookies.get("reto");
+    checkingCookie ? setHeader(checkingCookie) : (window.location = "/home");
+  }, []);
 
   useEffect(() => {
     if (response && response.data !== "success") window.location = "/home";
@@ -47,13 +44,13 @@ const Map = () => {
 
   const Users = () => {
     setCookie(cookies.get("reto"));
-    setData({user_ID:random})
+    setData({ user_ID: random });
     setRoute("/user");
   };
 
   const Aseos = () => {
     setCookie2(cookies.get("reto"));
-  }
+  };
 
   return (
     <section className="Home">

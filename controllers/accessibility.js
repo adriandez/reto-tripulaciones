@@ -21,7 +21,12 @@ const routes = {
   createUser: async (req, res) => {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 11);
-    const entry = { name: name, email: email, password: hashedPassword };
+    const entry = {
+      name: name,
+      email: email,
+      password: hashedPassword,
+      tutorial: true,
+    };
     try {
       await user
         .create(entry)
@@ -211,15 +216,13 @@ const routes = {
     verify().catch(console.error);
   },
   getByAseoID: async (req, res) => {
-
     console.log("LE LLEGAAAAAAAAAAAA");
 
-    console.log(req.params)
+    console.log(req.params);
     try {
       const response = await aseo.findOne({ where: req.params });
 
-      
-    console.log(response);
+      console.log(response);
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
@@ -228,6 +231,17 @@ const routes = {
   getRatingWc: async (req, res) => {
     try {
       const response = await raiting.findOne({ where: req.params });
+
+      res.status(200).json(response);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  updateTutorial: async (req, res) => {
+    try {
+      const response = await user.update({
+            tutorial: false,
+          },{ where: req.params });
 
       res.status(200).json(response);
     } catch (err) {

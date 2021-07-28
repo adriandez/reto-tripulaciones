@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import Back from "../../img/back.png";
 import Close from "../../img/close.png";
 import GirlChair from "../../img/girlChair.png";
@@ -7,6 +7,28 @@ import { useParams, Link } from "react-router-dom";
 import "./Assistant.scss";
 
 const Assistant = () => {
+/* 
+useEffect(() => {
+ 
+  axios
+      .get("/tutorial", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resultado) => {
+        setAllWcs(resultado.data);
+      });
+
+
+
+
+
+
+}, [ ])
+ */
+
+
+
+
   return (
     <div className="container">
       <div className="Assistant">

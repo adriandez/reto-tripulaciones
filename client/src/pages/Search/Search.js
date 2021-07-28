@@ -10,7 +10,10 @@ import MarkerImg from "../../img/marker.png";
 import SearchImg from "../../img/search.png";
 import StarRating from "../../util/Relevance";
 import Tutorial from "../../components/Tutorial/Tutorial"
+import Cookies from "universal-cookie";
 import "./Search.scss";
+
+const cookies = new Cookies();
 
 const Home = () => {
   const [wc, setWc] = useState([]);
@@ -24,13 +27,24 @@ const Home = () => {
   const [showDiv, setShowDiv] = useState(false);
   const [showPopUp, setshowPopUp] = useState(false);
   const [info, setInfo] = useState("");
-  const [sos, setSos] = useState(false)
+  const [sos, setSos] = useState(false);
+  const [token, setToken] = useState();
+
+  
+  useEffect(() => {
+    let checkingCookie = cookies.get("reto");
+    setToken(checkingCookie);
+  }, []);
 
   useEffect(() => {
-    axios.get("/aseos").then((resultado) => {
-      setAllWcs(resultado.data);
-    });
-  }, []);
+    axios
+      .get("/aseos", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resultado) => {
+        setAllWcs(resultado.data);
+      });
+  }, [token]);
 
   useEffect(() => {
     filterSearch();
@@ -96,7 +110,6 @@ const Home = () => {
         <Link
           onClick={() => {
             paintMarker(item.aseo_ID);
-
             setShowDiv(false);
           }}
         >
@@ -108,7 +121,9 @@ const Home = () => {
 
   const paintMarker = (aseos) => {
  
-    axios.get(`/aseos/${aseos}`).then((resultado) => {
+    axios.get(`/aseos/${aseos}`,{
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((resultado) => {
       setmarkerSelected([resultado.data]);
       filtrarDatos([resultado.data]);
     });
@@ -134,7 +149,9 @@ const Home = () => {
     setshowPopUp(true);
     setSos(true)
 
-    axios.get(`/aseos/raiting/${aseo}`).then((resultado) => {
+    axios.get(`/aseos/raiting/${aseo}`,{
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((resultado) => {
 
  
       let thumbnail = {

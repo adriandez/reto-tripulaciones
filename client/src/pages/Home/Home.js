@@ -8,9 +8,9 @@ import "./Home.scss";
 
 const Home = () => {
   const cookie = useCookie();
-   const [route] = useState("/auth/googleLogin");
-   const [google, setGoogle] = useState();
-   const response = useAxiosPost(route, google);
+  const [route] = useState("/auth/googleLogin");
+  const [google, setGoogle] = useState();
+  const response = useAxiosPost(route, google);
 
   useEffect(() => {
     if (cookie) {
@@ -52,7 +52,9 @@ const Home = () => {
       <Link to="/signin">
         <button>Acceder con tu cuenta</button>
       </Link>
-      <Link to="/signup">¿No tienes cuenta? Regístrate</Link>
+      <Link to="/signup">
+        <p>¿No tienes cuenta? Regístrate</p>
+      </Link>
     </section>
   );
 };
