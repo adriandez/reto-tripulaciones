@@ -90,10 +90,10 @@ const ProfileData = () => {
           ¿Podrías darnos el teléfono de alguien a quien llamar en caso de una
           emergencia?
         </h5>
-        <select>
-          <option placeholder="+34"></option>
+        <select placeholder="+34">
+          <option placeholder="+34">+34</option>
         </select>
-        <input
+        <input id="phoneIcon"
           type="number"
           name="phone"
           onChange={(event) => setPhone(event.target.value)}

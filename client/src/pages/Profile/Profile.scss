@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import "../../../Sass/_querys";
 
+.Profile{
+  
+
+}
 .SingUpContainer {
   display: flex;
   flex-direction: column;
+  @include desktop {
+    width: 30%;
+    margin-left: 35%;
+ 
+
+  }
+
+ 
  
   > h1{
     font-size: 1.9rem;
@@ -150,6 +163,12 @@
   flex-wrap: nowrap;
   align-items: center;
   color: #0D5093;
+  @include desktop {
+   
+    margin-top: 20%;
+ 
+
+  }
   
   >button {
     padding-top: 3.5%;
@@ -177,6 +196,14 @@
     margin-left: 80%;
     justify-content: flex-end;
     width: 4%;
+    @include desktop {
+      width: 1%;
+      margin-left: 23%;
+      margin-top: -0.5%;
+     
+   
+  
+    }
 }
 
 

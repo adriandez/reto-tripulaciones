@@ -216,7 +216,7 @@ const Home = (tutorialBoolean) => {
   };
 
   return (
-    <div>
+    <div className="containerMap">
       {tutorialBoolean.tutorialBoolean ? <Tutorial /> : ""}
       <section className="SearchPage">
         <div className="search">

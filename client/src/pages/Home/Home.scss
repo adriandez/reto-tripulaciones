@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import "../../../Sass/_querys";
+
 
 .Home {
     display: flex;
@@ -15,6 +17,11 @@ font-family: 'Montserrat', sans-serif;
     
     padding-top: 52px;
      
+    @include desktop {
+      width: 30%;
+      margin-left: 35%;
+ 
+    }
     h3{
       margin-top: 5%;
       text-align: center;

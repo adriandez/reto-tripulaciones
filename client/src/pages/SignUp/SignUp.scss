@@ -1,6 +1,13 @@
+@import "../../../Sass/_querys";
+
 .SingUpContainer {
   display: flex;
   flex-direction: column;
+  @include desktop {
+    width: 30%;
+    margin-left: 35%;
+
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');

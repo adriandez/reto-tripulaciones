@@ -2,9 +2,20 @@
  * ProfileData css File
 */
 @import "../../../Sass/colors";
+@import "../../../Sass/_querys";
+.containerProfileData{
+  @include desktop {
+    width: 30%;
+    margin-left: 35%;
+
+  }
+
+}
 .ProfileData {
   /* propertys here */
+
 }
+ 
 .containerButtonsPD {
   margin-top: 10%;
   display: flex;
@@ -13,6 +24,7 @@
   margin-bottom: -10%;
 }
 .formContainer {
+
   padding: 5%;
   margin-top: 10%;
   margin-bottom: 20%;
@@ -22,12 +34,14 @@
     font-weight: 200;
   }
   > input[name="phone"] {
+
     padding-left: 20px;
     height: 40px;
     width: 60%;
     border: solid 1px black;
     border-radius: 20px;
     background-color: #F4F7F8;
+ 
   }
   > input[name="kg"] {
     padding-left: 20px;
@@ -58,6 +72,7 @@
     border: solid 1px black;
     border-radius: 20px;
     background-color: #F4F7F8;
+    color : #A0A0A0;
 
   }
 
@@ -81,6 +96,13 @@
       color: white;
       background-color: green;
     }
+    @include desktop {
+      >img {
+  
+        width: 2%;
+      }
+    }
+    
     
   }
 }
@@ -150,3 +172,6 @@
 
 
   }
+::placeholder{
+  color : #A0A0A0
+}

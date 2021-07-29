@@ -14,13 +14,11 @@
   color: #1a5693;
   height: 100%;
   width: 100%;
-  @include desktop{
-    width: 80%;
-    padding-left: 10%;
-    padding-right: 10%;
- 
-  
-     }
+  @include desktop {
+    width: 30%;
+    margin-left: 35%;
+
+  }
 }
 .container {
   display: flex;

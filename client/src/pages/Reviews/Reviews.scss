@@ -1,6 +1,7 @@
 /*
  * Reviews css File
 */
+@import "../../../Sass/_querys";
 
 .Reviews {
  
@@ -8,6 +9,12 @@
 /*     background-color: #fafdff; */
  
     height: 100vh;
+    @include desktop{
+        margin-left: 35%;
+         width: 30%;
+          
+       
+       }
 }
 .title{
     

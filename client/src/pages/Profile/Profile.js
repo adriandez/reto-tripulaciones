@@ -32,6 +32,7 @@ useEffect(() => {
   }
   
   return (
+    <div className="Profile"> 
     <div className="SingUpContainer">
    
    <h1>Mi perfil</h1>
@@ -60,6 +61,7 @@ useEffect(() => {
         <h4 onClick={logout}>Cerrar sesión</h4>
       </div>
       <Footer></Footer>
+    </div>
     </div>
   );
 };
