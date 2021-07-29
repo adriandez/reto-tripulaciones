@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import signUpValidation from "../../validations/signUpValidation"
 import Back from "../../img/back.png";
 import Close from "../../img/close.png";
-import Avatar from "../../img/avatar.png"
+import Avatar from "../../img/avatarProfile.png"
 import Next from "../../img/nextBlack.png";
 import Cookies from "universal-cookie";
 import Footer  from "../../components/Footer";
@@ -40,7 +40,7 @@ const SignUp = () => {
  
       <div className="avatar">
 <img src={Avatar}></img>
-<h4>Yuri Ramírez</h4>
+<h4 className="nameUser">Yuri Ramírez</h4>
       </div>
       <div className="containerButtonsProfile"
 >     <button>

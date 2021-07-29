@@ -224,7 +224,7 @@ const Home = (tutorialBoolean) => {
             <input
               type="text"
               className="input"
-              placeholder="Buscar Wc"
+              placeholder="¿A dónde vas?"
               name="wc"
             ></input>
             <input type="image" alt="Submit" src={SearchImg} />
