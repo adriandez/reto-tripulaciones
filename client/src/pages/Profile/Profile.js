@@ -19,14 +19,12 @@ const cookies = new Cookies();
 
 const SignUp = () => {
   const cookie = useCookie();
+  const [name, setName] = useState();
 
-  useEffect(() => {
-    if (cookie) {
-      if (cookie.data.auth) {
-    
-      }
-    }
-  }, [cookie]);
+useEffect(() => {
+  if (cookie) setName(cookie.data.name);
+}, [cookie]);
+
 
   const logout = () =>{
     cookies.remove("reto")
@@ -40,7 +38,7 @@ const SignUp = () => {
  
       <div className="avatar">
 <img src={Avatar}></img>
-<h4 className="nameUser">Yuri Ramírez</h4>
+<h4>{name}</h4>
       </div>
       <div className="containerButtonsProfile"
 >     <button>
