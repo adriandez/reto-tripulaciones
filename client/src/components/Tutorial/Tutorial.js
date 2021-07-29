@@ -26,15 +26,14 @@ const Tutorial = () => {
 
   const nextPage = (page) => {
    
-    if (page === 1) {
-      alert("entra1")
+    if (page === "1") {
       document.getElementById("tuto1").style.display = "none";
       document.getElementById("tuto2").style.display = "block";
       document.getElementById("footer1").style.display = "none";
       document.getElementById("footer2").style.display = "block";
       document.getElementById("footer2-1").style.display = "block";
     }
-    if (page === 2) {
+    if (page === "2") {
       document.getElementById("footer2").style.display = "none";
       document.getElementById("footer2-1").style.display = "none";
       document.getElementById("tuto2").style.display = "none";
@@ -44,14 +43,14 @@ const Tutorial = () => {
       document.getElementById("footer3").style.display = "block";
       document.getElementById("footer3-1").style.display = "block";
     }
-    if (page === 3) {
+    if (page === "3") {
       document.getElementById("footer3").style.display = "none";
       document.getElementById("footer3-1").style.display = "none";
       document.getElementById("tuto3").style.display = "none";
       document.getElementById("tuto4").style.display = "block";
       document.getElementById("footer4").style.display = "block";
     }
-    if (page === 4) {
+    if (page === "4") {
       document.getElementById("footer4").style.display = "none";
 
       document.getElementById("tuto4").style.display = "none";

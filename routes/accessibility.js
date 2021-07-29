@@ -13,7 +13,7 @@ router.get("/aseos/:aseo_ID", routes.getByID);
 router.put("/aseos/raiting", middleware.verifyRoute, routes.updateRaiting);
 router.post("/aseos/userRaiting", routes.ceateUserRaiting);
 router.put("/aseos/userRaiting", routes.updateUserRaiting);
-router.put("/user/update", middleware.verifyRoute, routes.updateUser);
+router.put("/user/update", middleware.verifyRouteUser2, routes.updateUser);
 router.put("/tutorials", middleware.verifyRouteUser, routes.updateTutorial);
 router.post("/seed", routes.seed);
 

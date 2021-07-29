@@ -1,32 +1,20 @@
-import React ,{useEffect} from "react";
+import React ,{useState, useEffect} from "react";
 import Back from "../../img/back.png";
 import Close from "../../img/close.png";
 import GirlChair from "../../img/girlChair.png";
 import Next from "../../img/next.png";
 import { useParams, Link } from "react-router-dom";
 import "./Assistant.scss";
+import useCookie from "../../hooks/useCookie";
 
 const Assistant = () => {
-/* 
+
+const cookie = useCookie();
+const [ name, setName ] = useState();
+
 useEffect(() => {
- 
-  axios
-      .get("/tutorial", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((resultado) => {
-        setAllWcs(resultado.data);
-      });
-
-
-
-
-
-
-}, [ ])
- */
-
-
+  if (cookie) setName(cookie.data.name);
+}, [cookie]);
 
 
   return (
@@ -44,7 +32,7 @@ useEffect(() => {
           <img src={GirlChair}></img>
         </div>
         <div className="containerInfo">
-          <h2>!Hola Yuri¡</h2>
+          <h2>!{name}¡</h2>
           <p>
             Para poder mejorar tu experiencia y ayudarte en caso de emergencia ,
             nos gustaría conocerte algo mejor

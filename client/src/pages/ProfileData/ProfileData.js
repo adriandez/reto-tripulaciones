@@ -4,6 +4,11 @@ import Close from "../../img/close.png";
 import "./ProfileData.scss";
 
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const ProfileData = () => {
   const [support, setSupport] = useState("");
@@ -13,13 +18,27 @@ const ProfileData = () => {
   const [blood, setBlood] = useState("");
   const [enfermedad, setEnfermedad] = useState("");
   const [medical, setMedical] = useState("");
-  const [data, setData] = useState([""]);
+  const [data, setData] = useState();
+  const [token, setToken ] = useState();
+
+  useEffect(() => {
+    
+    let checkingCookie = cookies.get("reto");
+    setToken(checkingCookie);
+  }, []);
 
  useEffect(() => {
-
- 
-   
+   if (data) sendData(data);
  }, [data])
+
+ const sendData = async (data) => {
+
+  const resp = await axios.put("/user/update", data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (resp && resp.statusText === "OK") window.location = "/map";
+
+ }
 
   const apoyo = (data) => {
     setSupport(data);
@@ -29,32 +48,6 @@ const ProfileData = () => {
   };
 
   const submitData = () => {
-
-   if(phone==""){
- alert("introduce un número de teléfono")
-   }
-
-   else if(kg==""){
-    alert("introduce un peso")
-   }
-  else if(cm==""){
-    alert("introduce un peso")
-   }
-   else if(blood==""){
-     
-    alert("introduce grupo sanguíneo")
-  }
-  else if(enfermedad==""){
-     
-   
-  }
-  else if(medical==""){
-     
-  }
-
-
-
-
 
     let obj = {
       support,

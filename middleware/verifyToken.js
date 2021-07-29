@@ -36,6 +36,22 @@ const middleware = {
       res.sendStatus(403);
     }
   },
+  verifyRouteUser2: (req, res, next) => {
+    console.log(req.headers);
+    if (typeof req.headers["authorization"] !== undefined) {
+      const bearerHeader = req.headers["authorization"];
+      const bearerToken = bearerHeader.split(" ")[1];
+      req.token = bearerToken;
+      const decrypt = jwt.verify(req.token, mySecret);
+      req.body = {
+        decrypt: decrypt,
+        data: req.body
+      };
+      if (decrypt.auth) next();
+    } else {
+      res.sendStatus(403);
+    }
+  },
 };
 
 module.exports = middleware;

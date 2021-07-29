@@ -256,8 +256,9 @@ const routes = {
   },
   updateUser: async (req, res) => {
     try {
-      const response = await user.update(req.body, { where: req.params });
-
+      const response = await user.update(req.body.data, {
+        where: { user_ID: req.body.decrypt.user_ID },
+      });
       res.status(200).json(response);
     } catch (err) {
       console.log(err);
